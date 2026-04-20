@@ -44,8 +44,6 @@ fun GuitarChordDiagram(chord: Chord) {
         }
 
         Spacer(modifier = Modifier.height(8.dp))
-
-        ChordInfo(position)
     }
 }
 
@@ -75,8 +73,6 @@ fun UkuleleChordDiagram(chord: Chord) {
         }
 
         Spacer(modifier = Modifier.height(8.dp))
-
-        ChordInfo(position)
     }
 }
 
@@ -102,22 +98,6 @@ fun PianoChordDiagram(chord: Chord) {
         }
 
         Spacer(modifier = Modifier.height(8.dp))
-
-        ChordInfo(position)
-    }
-}
-
-@Composable
-fun ChordInfo(position: ChordPosition?) {
-    if (position == null) return
-
-    val fingers = position.fingers
-    if (fingers.isNotEmpty()) {
-        Text(
-            text = "Fingers: ${fingers.map { it.fingerNumber }.sorted().joinToString(", ")}",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
     }
 }
 
@@ -145,32 +125,32 @@ fun ChordDiagramCanvas(
         val stringSpacing = diagramWidth / (strings - 1)
         val fretSpacing = diagramHeight / frets
 
-        // Draw nut (left thick line) - rotated 90 degrees
+        // Draw nut (top thick line)
         drawLine(
             color = onSurfaceColor,
             start = Offset(leftPadding, topPadding),
-            end = Offset(leftPadding, topPadding + diagramHeight),
+            end = Offset(leftPadding + diagramWidth, topPadding),
             strokeWidth = 6.dp.toPx()
         )
 
-        // Draw horizontal lines (strings) - now brighter and thicker
+        // Draw vertical lines (strings) - bright blue
         for (i in 0 until strings) {
-            val y = topPadding + i * stringSpacing
+            val x = leftPadding + i * stringSpacing
             drawLine(
                 color = stringColor,
-                start = Offset(leftPadding, y),
-                end = Offset(leftPadding + diagramHeight, y),
+                start = Offset(x, topPadding),
+                end = Offset(x, topPadding + diagramHeight),
                 strokeWidth = if (i == 0 || i == strings - 1) 3.5.dp.toPx() else 3.dp.toPx()
             )
         }
 
-        // Draw vertical lines (frets)
+        // Draw horizontal lines (frets)
         for (i in 0..frets) {
-            val x = leftPadding + i * fretSpacing
+            val y = topPadding + i * fretSpacing
             drawLine(
                 color = onSurfaceColor,
-                start = Offset(x, topPadding),
-                end = Offset(x, topPadding + diagramHeight),
+                start = Offset(leftPadding, y),
+                end = Offset(leftPadding + diagramWidth, y),
                 strokeWidth = 1.5.dp.toPx()
             )
         }
@@ -183,27 +163,29 @@ fun ChordDiagramCanvas(
                 textAlign = android.graphics.Paint.Align.CENTER
             }
             for (i in 1..frets) {
-                val x = leftPadding + (i - 0.5f) * fretSpacing
-                drawContext.canvas.nativeCanvas.drawText(i.toString(), x, topPadding - 8.dp.toPx(), fretPaint)
+                val y = topPadding + (i - 0.5f) * fretSpacing
+                drawContext.canvas.nativeCanvas.drawText(i.toString(), leftPadding - 10.dp.toPx(), y + 4.dp.toPx(), fretPaint)
             }
         }
 
-        // Draw string labels on right side
+        // Draw string labels at bottom
         val labelPaint = android.graphics.Paint().apply {
             color = android.graphics.Color.GRAY
             textSize = 12.dp.toPx()
             textAlign = android.graphics.Paint.Align.CENTER
         }
         stringLabels.forEachIndexed { i, label ->
-            val y = topPadding + i * stringSpacing
-            drawContext.canvas.nativeCanvas.drawText(label, leftPadding + diagramHeight + 15.dp.toPx(), y + 4.dp.toPx(), labelPaint)
+            val x = leftPadding + i * stringSpacing
+            drawContext.canvas.nativeCanvas.drawText(label, x, size.height - 5.dp.toPx(), labelPaint)
         }
 
-        // Draw finger positions (rotated 90 degrees)
+        // Draw finger positions
         position.frets.forEach { fret ->
             val stringIndex = strings - fret.string
-            val y = topPadding + stringIndex * stringSpacing
-            val x = leftPadding + (fret.fret - 0.5f) * fretSpacing
+            val x = leftPadding + stringIndex * stringSpacing
+            val y = topPadding + (fret.fret - 0.5f) * fretSpacing
+
+            val fingerNum = fret.finger ?: position.fingers.find { it.string == fret.string && it.fret == fret.fret }?.fingerNumber ?: 0
 
             when {
                 fret.fret == -1 -> {
@@ -213,55 +195,52 @@ fun ChordDiagramCanvas(
                         textAlign = android.graphics.Paint.Align.CENTER
                         isFakeBoldText = true
                     }
-                    drawContext.canvas.nativeCanvas.drawText("X", leftPadding - 10.dp.toPx(), y + 4.dp.toPx(), redPaint)
+                    drawContext.canvas.nativeCanvas.drawText("X", x, topPadding - 10.dp.toPx(), redPaint)
                 }
                 fret.fret == 0 -> {
                     drawCircle(
-                        color = Color(0xFF1976D2),
+                        color = stringColor,
                         radius = 6.dp.toPx(),
-                        center = Offset(leftPadding + 15.dp.toPx(), y)
+                        center = Offset(x, topPadding - 15.dp.toPx())
                     )
                 }
                 fret.fret in 1..frets -> {
-                    val fingerNum = fret.finger ?: 0
                     drawCircle(
                         color = if (fingerNum > 0) primaryColor else Color.Gray,
-                        radius = 12.dp.toPx(),
+                        radius = 14.dp.toPx(),
                         center = Offset(x, y)
                     )
-                    if (fingerNum > 0) {
-                        val whitePaint = android.graphics.Paint().apply {
-                            color = android.graphics.Color.WHITE
-                            textSize = 14.dp.toPx()
-                            textAlign = android.graphics.Paint.Align.CENTER
-                            isFakeBoldText = true
-                        }
-                        drawContext.canvas.nativeCanvas.drawText(fingerNum.toString(), x, y + 5.dp.toPx(), whitePaint)
+                    val textPaint = android.graphics.Paint().apply {
+                        color = android.graphics.Color.BLACK
+                        textSize = 16.dp.toPx()
+                        textAlign = android.graphics.Paint.Align.CENTER
+                        isFakeBoldText = true
                     }
+                    drawContext.canvas.nativeCanvas.drawText(fingerNum.toString(), x, y + 6.dp.toPx(), textPaint)
                 }
             }
         }
 
-        // Draw barres (rotated 90 degrees)
+        // Draw barres
         position.barres.forEach { barre ->
-            val startY = topPadding + (strings - barre.fromString) * stringSpacing
-            val endY = topPadding + (strings - barre.toString) * stringSpacing
-            val x = leftPadding + (barre.fret - 0.5f) * fretSpacing
+            val startX = leftPadding + (strings - barre.fromString) * stringSpacing
+            val endX = leftPadding + (strings - barre.toString) * stringSpacing
+            val y = topPadding + (barre.fret - 0.5f) * fretSpacing
 
             drawLine(
                 color = primaryColor,
-                start = Offset(x, startY),
-                end = Offset(x, endY),
+                start = Offset(startX, y),
+                end = Offset(endX, y),
                 strokeWidth = 20.dp.toPx()
             )
 
-            val whitePaint = android.graphics.Paint().apply {
-                color = android.graphics.Color.WHITE
+            val textPaint = android.graphics.Paint().apply {
+                color = android.graphics.Color.BLACK
                 textSize = 14.dp.toPx()
                 textAlign = android.graphics.Paint.Align.CENTER
                 isFakeBoldText = true
             }
-            drawContext.canvas.nativeCanvas.drawText(barre.finger.toString(), x, (startY + endY) / 2 + 6.dp.toPx(), whitePaint)
+            drawContext.canvas.nativeCanvas.drawText(barre.finger.toString(), (startX + endX) / 2, y + 6.dp.toPx(), textPaint)
         }
     }
 }
