@@ -93,7 +93,7 @@ fun PianoChordDiagram(chord: Chord) {
                 position = position,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(160.dp)
+                    .height(120.dp)
             )
         }
 
@@ -254,13 +254,13 @@ fun PianoKeyboard(
     val onSurfaceColor = MaterialTheme.colorScheme.onSurface
 
     Canvas(modifier = modifier) {
-        val whiteKeyWidth = size.width / 7
+        val whiteKeyWidth = size.width / 14
         val whiteKeyHeight = size.height
         val blackKeyWidth = whiteKeyWidth * 0.6f
         val blackKeyHeight = whiteKeyHeight * 0.6f
 
-        // White keys: C D E F G A B (indices 0-6)
-        for (i in 0 until 7) {
+        // White keys: C D E F G A B C D E F G A B (2 octaves, indices 0-13)
+        for (i in 0 until 14) {
             val x = i * whiteKeyWidth
             drawRect(
                 color = Color.White,
@@ -275,29 +275,56 @@ fun PianoKeyboard(
             )
         }
 
-        // Black keys positions: between 0-1, 1-2, 3-4, 4-5, 5-6
-        val blackKeyPositions = listOf(0, 1, 3, 4, 5)
+        // Black keys positions in first octave: between 0-1, 1-2, 3-4, 4-5, 5-6
+        // Second octave same pattern offset by 7
+        val blackKeyDrawIndices = listOf(0, 1, 3, 4, 5, 7, 8, 10, 11, 12)
 
-        for (i in blackKeyPositions.indices) {
-            val x = (blackKeyPositions[i] + 1) * whiteKeyWidth - blackKeyWidth / 2
+        for (i in blackKeyDrawIndices.indices) {
+            val x = (blackKeyDrawIndices[i] + 1) * whiteKeyWidth - blackKeyWidth / 2
             drawRect(
-                color = onSurfaceColor,
+                color = Color.Black,
                 topLeft = Offset(x, 0f),
                 size = Size(blackKeyWidth, blackKeyHeight)
             )
         }
 
         // Highlight keys that are in the chord
-        val activeFrets = position.frets.filter { it.fret > 0 }
-        activeFrets.forEach { fret ->
-            val keyIndex = (fret.fret - 1) % 7
-            if (keyIndex in 0 until 7) {
-                val x = keyIndex * whiteKeyWidth
-                drawRect(
-                    color = primaryColor.copy(alpha = 0.7f),
-                    topLeft = Offset(x + 2f, 2f),
-                    size = Size(whiteKeyWidth - 4, whiteKeyHeight - 4)
-                )
+        val whiteKeyNoteOffsets = listOf(0, 2, 4, 5, 7, 9, 11) // C, D, E, F, G, A, B
+        val blackKeyNoteOffsets = listOf(1, 3, 6, 8, 10) // C#, D#, F#, G#, A#
+        val blackKeyDrawPositions = listOf(1, 3, 6, 8, 10) // white key indices where black keys appear
+
+        position.frets.forEach { fret ->
+            if (fret.fret < 0) return@forEach
+
+            val noteOffset = fret.fret % 12
+            val octave = fret.fret / 12
+
+            // Check if it's a white key
+            val whitePosIndex = whiteKeyNoteOffsets.indexOf(noteOffset)
+            if (whitePosIndex >= 0) {
+                val keyIndex = octave * 7 + whitePosIndex
+                if (keyIndex in 0 until 14) {
+                    val x = keyIndex * whiteKeyWidth
+                    drawRect(
+                        color = primaryColor.copy(alpha = 0.7f),
+                        topLeft = Offset(x + 2f, 2f),
+                        size = Size(whiteKeyWidth - 4, whiteKeyHeight - 4)
+                    )
+                }
+            }
+
+            // Check if it's a black key
+            val blackPosIndex = blackKeyNoteOffsets.indexOf(noteOffset)
+            if (blackPosIndex >= 0) {
+                val keyIndex = octave * 7 + blackKeyDrawPositions[blackPosIndex]
+                if (keyIndex in 1 until 14) {
+                    val x = keyIndex * whiteKeyWidth - blackKeyWidth / 2
+                    drawRect(
+                        color = primaryColor.copy(alpha = 0.9f),
+                        topLeft = Offset(x + 1f, 0f),
+                        size = Size(blackKeyWidth - 2, blackKeyHeight - 2)
+                    )
+                }
             }
         }
     }
