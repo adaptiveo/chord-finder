@@ -8,8 +8,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 1), Fret(3, 0), Fret(4, 2), Fret(5, 3), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 4, 2), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 0), Fret(2, 4), Fret(3, 7),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 0)
@@ -21,8 +23,10 @@ object ChordData {
                 Fret(1, 1), Fret(2, 3), Fret(3, 3), Fret(4, 3), Fret(5, 1), Fret(6, -1)
             ), listOf(Barre(1, 1, 5, 1)), listOf(Finger(2, 2, 3), Finger(3, 3, 3), Finger(4, 4, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 1), Fret(2, 5), Fret(3, 8), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 13), Fret(8, 17), Fret(9, 20), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 1), Fret(2, 5), Fret(3, 8),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 4), Fret(3, 3), Fret(4, 1)
@@ -34,8 +38,10 @@ object ChordData {
                 Fret(1, 2), Fret(2, 3), Fret(3, 2), Fret(4, 0), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 3), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 2), Fret(2, 6), Fret(3, 9),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -47,8 +53,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, -1), Fret(3, 3), Fret(4, 1), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 3, 1))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 3), Fret(2, 7), Fret(3, 10), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 15), Fret(8, 19), Fret(9, 22), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 3), Fret(2, 7), Fret(3, 10),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 1), Fret(3, 1), Fret(4, 3)
@@ -60,8 +68,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 0), Fret(3, 1), Fret(4, 2), Fret(5, 2), Fret(6, 0)
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 2), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 4), Fret(2, 8), Fret(3, 11),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -73,8 +83,10 @@ object ChordData {
                 Fret(1, 1), Fret(2, 1), Fret(3, 2), Fret(4, 3), Fret(5, 3), Fret(6, 1)
             ), listOf(Barre(1, 1, 6, 1)), listOf(Finger(2, 3, 2), Finger(3, 4, 3), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 5), Fret(2, 9), Fret(3, 0), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 17), Fret(8, 21), Fret(9, 12), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 5), Fret(2, 9), Fret(3, 0),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 0), Fret(4, 0)
@@ -86,8 +98,10 @@ object ChordData {
                 Fret(1, 2), Fret(2, 2), Fret(3, 3), Fret(4, 4), Fret(5, 4), Fret(6, 2)
             ), listOf(Barre(2, 1, 6, 1)), listOf(Finger(2, 3, 3), Finger(3, 4, 4), Finger(4, 5, 4))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 6), Fret(2, 10), Fret(3, 1), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 18), Fret(8, 22), Fret(9, 13), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 6), Fret(2, 10), Fret(3, 1),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 1), Fret(3, 1), Fret(4, 2)
@@ -99,8 +113,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 2), Fret(3, 0), Fret(4, 0), Fret(5, 0), Fret(6, 3)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 2), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 7), Fret(2, 11), Fret(3, 2), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 14), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 7), Fret(2, 11), Fret(3, 2),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -112,8 +128,10 @@ object ChordData {
                 Fret(1, 4), Fret(2, -1), Fret(3, 4), Fret(4, 2), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 4), Finger(2, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 8), Fret(2, 0), Fret(3, 3), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 20), Fret(8, 12), Fret(9, 15), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 8), Fret(2, 0), Fret(3, 3),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 1), Fret(3, 2), Fret(4, 1)
@@ -125,8 +143,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 2), Fret(3, 2), Fret(4, 2), Fret(5, 0), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 2), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 9), Fret(2, 1), Fret(3, 4),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -138,8 +158,10 @@ object ChordData {
                 Fret(1, 1), Fret(2, 3), Fret(3, 3), Fret(4, 3), Fret(5, 1), Fret(6, -1)
             ), listOf(Barre(1, 1, 5, 1)), listOf(Finger(2, 2, 3), Finger(3, 3, 3), Finger(4, 4, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 10), Fret(2, 2), Fret(3, 5), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 22), Fret(8, 14), Fret(9, 17), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 10), Fret(2, 2), Fret(3, 5),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -151,8 +173,10 @@ object ChordData {
                 Fret(1, 2), Fret(2, 4), Fret(3, 4), Fret(4, 4), Fret(5, 2), Fret(6, -1)
             ), listOf(Barre(2, 1, 5, 1)), listOf(Finger(2, 2, 4), Finger(3, 3, 4), Finger(4, 4, 4))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 11), Fret(2, 3), Fret(3, 6), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 23), Fret(8, 15), Fret(9, 18), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 11), Fret(2, 3), Fret(3, 6),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 4), Fret(3, 3), Fret(4, 2)
@@ -165,8 +189,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 5), Fret(3, 5), Fret(4, 5), Fret(5, 3), Fret(6, -1)
             ), listOf(Barre(3, 1, 5, 1)), listOf(Finger(2, 2, 5), Finger(3, 3, 5), Finger(4, 4, 5))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 0), Fret(2, 3), Fret(3, 7), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 15), Fret(9, 19), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 0), Fret(2, 3), Fret(3, 7),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 0), Fret(3, 2), Fret(4, 3)
@@ -178,8 +204,10 @@ object ChordData {
                 Fret(1, 4), Fret(2, -1), Fret(3, 4), Fret(4, 2), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 4), Finger(2, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 1), Fret(2, 4), Fret(3, 8), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 13), Fret(8, 16), Fret(9, 20), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 1), Fret(2, 4), Fret(3, 8),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 1), Fret(3, 2), Fret(4, 1)
@@ -191,8 +219,10 @@ object ChordData {
                 Fret(1, 1), Fret(2, 3), Fret(3, 2), Fret(4, 0), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 1), Finger(2, 2, 3), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 2), Fret(2, 5), Fret(3, 9), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 17), Fret(9, 21), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 2), Fret(2, 5), Fret(3, 9),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 0), Fret(4, 0)
@@ -204,8 +234,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, -1), Fret(3, 3), Fret(4, 1), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 3, 1))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 3), Fret(2, 6), Fret(3, 10), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 15), Fret(8, 18), Fret(9, 22), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 3), Fret(2, 7), Fret(3, 10),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 1), Fret(3, 1), Fret(4, 2)
@@ -217,8 +249,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 0), Fret(3, 0), Fret(4, 2), Fret(5, 2), Fret(6, 0)
             ), emptyList(), listOf(Finger(1, 4, 2), Finger(2, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 4), Fret(2, 7), Fret(3, 11), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 19), Fret(9, 23), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 4), Fret(2, 7), Fret(3, 11),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -230,8 +264,10 @@ object ChordData {
                 Fret(1, 1), Fret(2, 1), Fret(3, 1), Fret(4, 3), Fret(5, 3), Fret(6, 1)
             ), listOf(Barre(1, 1, 6, 1)), listOf(Finger(2, 4, 3), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 5), Fret(2, 8), Fret(3, 0), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 17), Fret(8, 20), Fret(9, 12), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 5), Fret(2, 8), Fret(3, 12),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 1), Fret(3, 0), Fret(4, 0)
@@ -243,8 +279,10 @@ object ChordData {
                 Fret(1, 2), Fret(2, 2), Fret(3, 2), Fret(4, 4), Fret(5, 4), Fret(6, 2)
             ), listOf(Barre(2, 1, 6, 1)), listOf(Finger(2, 4, 4), Finger(3, 5, 4))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 6), Fret(2, 9), Fret(3, 1), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 18), Fret(8, 21), Fret(9, 13), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 6), Fret(2, 9), Fret(3, 1),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 1), Fret(4, 2)
@@ -256,8 +294,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 3), Fret(3, 3), Fret(4, 5), Fret(5, 5), Fret(6, 3)
             ), listOf(Barre(3, 1, 6, 1)), listOf(Finger(2, 4, 5), Finger(3, 5, 5))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 7), Fret(2, 10), Fret(3, 2), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 22), Fret(9, 14), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 7), Fret(2, 10), Fret(3, 2),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 0), Fret(3, 1), Fret(4, 3)
@@ -269,8 +309,10 @@ object ChordData {
                 Fret(1, 4), Fret(2, 4), Fret(3, 4), Fret(4, 6), Fret(5, 6), Fret(6, 4)
             ), listOf(Barre(4, 1, 6, 1)), listOf(Finger(2, 5, 6), Finger(3, 6, 6))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 8), Fret(2, 11), Fret(3, 3), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 20), Fret(8, 23), Fret(9, 15), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 8), Fret(2, 11), Fret(3, 3),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 1), Fret(3, 2), Fret(4, 1)
@@ -282,8 +324,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 1), Fret(3, 2), Fret(4, 2), Fret(5, 0), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 3, 2), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 9), Fret(2, 0), Fret(3, 4), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 12), Fret(9, 16), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 9), Fret(2, 0), Fret(3, 4),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 1), Fret(4, 0)
@@ -295,8 +339,10 @@ object ChordData {
                 Fret(1, 1), Fret(2, 2), Fret(3, 3), Fret(4, 3), Fret(5, 1), Fret(6, -1)
             ), listOf(Barre(1, 1, 5, 1)), listOf(Finger(2, 2, 2), Finger(3, 3, 3), Finger(4, 4, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 10), Fret(2, 1), Fret(3, 5), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 22), Fret(8, 13), Fret(9, 17), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 10), Fret(2, 1), Fret(3, 5),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 2), Fret(3, 1), Fret(4, 1)
@@ -308,8 +354,10 @@ object ChordData {
                 Fret(1, 2), Fret(2, 3), Fret(3, 4), Fret(4, 4), Fret(5, 2), Fret(6, -1)
             ), listOf(Barre(2, 1, 5, 1)), listOf(Finger(2, 3, 4), Finger(3, 4, 4))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 11), Fret(2, 2), Fret(3, 6), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 23), Fret(8, 14), Fret(9, 18), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 11), Fret(2, 2), Fret(3, 6),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 3), Fret(3, 2), Fret(4, 2)
@@ -323,7 +371,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 3, 3), Finger(3, 4, 2), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, 10), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, 22), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -336,7 +385,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 1), Finger(2, 3, 1), Finger(3, 4, 2), Finger(4, 5, 1))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 1), Fret(2, 5), Fret(3, 8), Fret(4, 11), Fret(5, -1), Fret(6, -1),
-                Fret(7, 13), Fret(8, 17), Fret(9, 20), Fret(10, 23), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -349,7 +399,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 1), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, 0), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, 12), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 2), Fret(4, 0)
@@ -362,7 +413,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 3, 1), Finger(3, 4, 1))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 3), Fret(2, 7), Fret(3, 10), Fret(4, 1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 15), Fret(8, 19), Fret(9, 22), Fret(10, 13), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 1), Fret(3, 1), Fret(4, 2)
@@ -375,7 +427,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, 2), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, 14), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -388,7 +441,8 @@ object ChordData {
             ), listOf(Barre(1, 1, 6, 1)), listOf(Finger(2, 3, 2), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 5), Fret(2, 9), Fret(3, 0), Fret(4, 3), Fret(5, -1), Fret(6, -1),
-                Fret(7, 17), Fret(8, 21), Fret(9, 12), Fret(10, 15), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 0), Fret(4, 1)
@@ -401,7 +455,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 2), Finger(3, 3, 3), Finger(4, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 6), Fret(2, 10), Fret(3, 1), Fret(4, 4), Fret(5, -1), Fret(6, -1),
-                Fret(7, 18), Fret(8, 22), Fret(9, 13), Fret(10, 16), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 1), Fret(3, 1), Fret(4, 1)
@@ -414,7 +469,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 1), Finger(2, 5, 2), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 11), Fret(3, 2), Fret(4, 5), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 14), Fret(10, 17), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 0), Fret(3, 0), Fret(4, 2)
@@ -427,7 +483,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 4), Finger(2, 3, 2), Finger(3, 4, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 8), Fret(2, 0), Fret(3, 3), Fret(4, 6), Fret(5, -1), Fret(6, -1),
-                Fret(7, 20), Fret(8, 12), Fret(9, 15), Fret(10, 18), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 1), Fret(3, 1), Fret(4, 2)
@@ -440,7 +497,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, 7), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, 19), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -453,7 +511,8 @@ object ChordData {
             ), listOf(Barre(1, 1, 5, 1)), listOf(Finger(2, 3, 1), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 10), Fret(2, 2), Fret(3, 5), Fret(4, 8), Fret(5, -1), Fret(6, -1),
-                Fret(7, 22), Fret(8, 14), Fret(9, 17), Fret(10, 20), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -466,7 +525,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 4, 1), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 11), Fret(2, 3), Fret(3, 6), Fret(4, 9), Fret(5, -1), Fret(6, -1),
-                Fret(7, 23), Fret(8, 15), Fret(9, 18), Fret(10, 21), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -480,7 +540,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 4, 2), Finger(2, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, 11), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, 23), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 0), Fret(4, 0)
@@ -493,7 +554,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 2), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, 1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, 13), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -506,7 +568,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 1), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, 3), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, 15), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -518,8 +581,9 @@ object ChordData {
                 Fret(1, 3), Fret(2, 2), Fret(3, 0), Fret(4, 0), Fret(5, 0), Fret(6, 2)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 2), Finger(3, 6, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 7), Fret(2, 11), Fret(3, 14), Fret(4, 18), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 2), Fret(10, 6), Fret(11, -1), Fret(12, -1)
+                Fret(1, 7), Fret(2, 11), Fret(3, 2), Fret(4, 6), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 2)
@@ -532,7 +596,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 1), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, 8), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, 20), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 0), Fret(4, 0)
@@ -545,7 +610,8 @@ object ChordData {
             ), listOf(Barre(2, 1, 5, 1)), listOf(Finger(3, 3, 4), Finger(4, 4, 4))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 11), Fret(2, 3), Fret(3, 6), Fret(4, 10), Fret(5, -1), Fret(6, -1),
-                Fret(7, 23), Fret(8, 15), Fret(9, 18), Fret(10, 22), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -559,7 +625,8 @@ object ChordData {
             ), listOf(Barre(3, 1, 5, 1)), listOf(Finger(2, 2, 5))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 7), Fret(4, 10), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 15), Fret(9, 19), Fret(10, 22), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 1), Fret(3, 2), Fret(4, 1)
@@ -572,7 +639,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 1), Finger(2, 2, 3), Finger(3, 3, 1), Finger(4, 4, 1))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 5), Fret(3, 9), Fret(4, 0), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 17), Fret(9, 21), Fret(10, 12), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 0), Fret(4, 1)
@@ -585,7 +653,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 4, 3), Finger(2, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 7), Fret(3, 11), Fret(4, 2), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 19), Fret(9, 23), Fret(10, 14), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 0), Fret(3, 0), Fret(4, 1)
@@ -597,8 +666,9 @@ object ChordData {
                 Fret(1, 3), Fret(2, 3), Fret(3, 3), Fret(4, 3), Fret(5, 1), Fret(6, -1)
             ), listOf(Barre(3, 1, 5, 1)), listOf()),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 7), Fret(2, 10), Fret(3, 14), Fret(4, 17), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 22), Fret(9, 2), Fret(10, 5), Fret(11, -1), Fret(12, -1)
+                Fret(1, 7), Fret(2, 10), Fret(3, 2), Fret(4, 5), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 0), Fret(3, 1), Fret(4, 1)
@@ -611,7 +681,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 0), Fret(3, 4), Fret(4, 7), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 12), Fret(9, 16), Fret(10, 19), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 1), Fret(4, 0)
@@ -624,7 +695,8 @@ object ChordData {
             ), listOf(Barre(2, 1, 5, 1)), listOf()),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 11), Fret(2, 2), Fret(3, 6), Fret(4, 9), Fret(5, -1), Fret(6, -1),
-                Fret(7, 23), Fret(8, 14), Fret(9, 18), Fret(10, 21), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 3), Fret(3, 2), Fret(4, 2)
@@ -637,8 +709,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 4), Fret(3, 2), Fret(4, 3), Fret(5, 1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 4), Finger(3, 3, 2), Finger(4, 5, 1))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 0), Fret(2, 3), Fret(3, 6), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 15), Fret(9, 18), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 0), Fret(2, 3), Fret(3, 6),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 1), Fret(3, 2), Fret(4, 1)
@@ -650,8 +724,10 @@ object ChordData {
                 Fret(1, 1), Fret(2, 2), Fret(3, 0), Fret(4, 1), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 1), Finger(2, 2, 2), Finger(3, 4, 1))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 2), Fret(2, 5), Fret(3, 8), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 17), Fret(9, 20), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 2), Fret(2, 5), Fret(3, 8),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 2), Fret(3, 0), Fret(4, 1)
@@ -663,8 +739,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 0), Fret(3, 1), Fret(4, 2), Fret(5, 0), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 4), Fret(2, 7), Fret(3, 10), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 19), Fret(9, 22), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 4), Fret(2, 7), Fret(3, 10),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 3), Fret(2, 1), Fret(3, 1), Fret(4, 2)
@@ -676,8 +754,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 4), Fret(3, 2), Fret(4, 3), Fret(5, 1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 4), Finger(3, 3, 2), Finger(4, 5, 1))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 7), Fret(2, 10), Fret(3, 1), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 22), Fret(9, 13), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 7), Fret(2, 10), Fret(3, 1),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -690,8 +770,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 1), Fret(3, 0), Fret(4, 3), Fret(5, 3), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 4, 3), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 0), Fret(2, 4), Fret(3, 8), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 20), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 0), Fret(2, 4), Fret(3, 8),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 3), Fret(4, 1)
@@ -703,8 +785,10 @@ object ChordData {
                 Fret(1, 2), Fret(2, 3), Fret(3, 2), Fret(4, 1), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 3), Finger(3, 3, 2), Finger(4, 4, 1))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 2), Fret(2, 6), Fret(3, 10), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 22), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 2), Fret(2, 6), Fret(3, 10),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 2), Fret(4, 1)
@@ -716,8 +800,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 2), Fret(3, 1), Fret(4, 0), Fret(5, 0), Fret(6, 3)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 2), Finger(3, 3, 1), Finger(4, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 7), Fret(2, 11), Fret(3, 3), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 15), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 7), Fret(2, 11), Fret(3, 3),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 1), Fret(4, 3)
@@ -729,8 +815,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 2), Fret(3, 3), Fret(4, 2), Fret(5, 0), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 3), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 9), Fret(2, 1), Fret(3, 5), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 17), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 9), Fret(2, 1), Fret(3, 5),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 2), Fret(4, 0)
@@ -744,7 +832,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 3), Finger(2, 4, 2), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, 14), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, 2), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 0), Fret(3, 2), Fret(4, 0)
@@ -757,7 +846,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 3), Finger(3, 3, 2), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, 14), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, 2), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 2), Fret(4, 0)
@@ -770,7 +860,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 4), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, 18), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, 6), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -783,7 +874,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 11), Fret(3, 14), Fret(4, 19), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 2), Fret(10, 7), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 0)
@@ -796,7 +888,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, 13), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, 1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 0), Fret(3, 1), Fret(4, 0)
@@ -809,8 +902,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 3), Fret(3, 2), Fret(4, 0), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 2), Fret(2, 7), Fret(3, 9), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 19), Fret(9, 21), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 2), Fret(2, 4), Fret(3, 9),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 0)
@@ -822,8 +917,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 3), Fret(3, 3), Fret(4, 0), Fret(5, -1), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 3, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 2), Fret(2, 5), Fret(3, 9), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 17), Fret(9, 21), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 2), Fret(2, 7), Fret(3, 9),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -835,8 +932,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 0), Fret(3, 4), Fret(4, 2), Fret(5, 2), Fret(6, 0)
             ), emptyList(), listOf(Finger(1, 3, 4), Finger(2, 4, 2), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 4), Fret(2, 9), Fret(3, 11), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 21), Fret(9, 23), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 4), Fret(2, 6), Fret(3, 11),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 2), Fret(3, 0), Fret(4, 2)
@@ -848,8 +947,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 0), Fret(3, 2), Fret(4, 2), Fret(5, 2), Fret(6, 0)
             ), emptyList(), listOf(Finger(1, 3, 2), Finger(2, 4, 2), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 4), Fret(2, 7), Fret(3, 11), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 19), Fret(9, 23), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 4), Fret(2, 9), Fret(3, 11),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -861,8 +962,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 0), Fret(3, 2), Fret(4, 2), Fret(5, 0), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 3, 2), Finger(2, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 9), Fret(2, 2), Fret(3, 4), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 14), Fret(9, 16), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 9), Fret(2, 11), Fret(3, 4),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 0), Fret(3, 1), Fret(4, 0)
@@ -874,8 +977,10 @@ object ChordData {
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 2), Fret(5, 0), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 2, 3), Finger(2, 3, 2), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 9), Fret(2, 0), Fret(3, 4), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 12), Fret(9, 16), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 9), Fret(2, 2), Fret(3, 4),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 1), Fret(3, 1), Fret(4, 0)
@@ -887,8 +992,10 @@ object ChordData {
                 Fret(1, 3), Fret(2, 3), Fret(3, 0), Fret(4, 0), Fret(5, 1), Fret(6, 3)
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 5, 1), Finger(4, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 7), Fret(2, 10), Fret(3, 14), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 22), Fret(9, 2), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(1, 7), Fret(2, 0), Fret(3, 2),
+                Fret(4, -1), Fret(5, -1), Fret(6, -1),
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -902,7 +1009,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 4, 2), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, 9), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, 21), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 0), Fret(3, 2), Fret(4, 0)
@@ -915,7 +1023,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, 11), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, 23), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 2), Fret(4, 0)
@@ -928,7 +1037,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 2), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, 13), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, 1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -941,7 +1051,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 2), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, 7), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, 19), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -954,7 +1065,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 0), Fret(3, 4), Fret(4, 9), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 12), Fret(9, 16), Fret(10, 21), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 0)
@@ -968,7 +1080,8 @@ object ChordData {
             ), listOf(Barre(3, 1, 5, 1)), listOf()),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, 17), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, 5), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -981,7 +1094,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, 19), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, 7), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -994,7 +1108,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 2), Finger(3, 5, 2), Finger(4, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, 21), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, 9), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -1007,7 +1122,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 11), Fret(3, 14), Fret(4, 0), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 2), Fret(10, 12), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -1020,7 +1136,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 2), Finger(3, 4, 2), Finger(4, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, 17), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, 5), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1034,7 +1151,8 @@ object ChordData {
             ), listOf(Barre(3, 1, 6, 1)), listOf()),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, 9), Fret(5, 21), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, 21), Fret(11, 9), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -1047,7 +1165,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 3, 2), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, 11), Fret(5, 23), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, 23), Fret(11, 11), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -1060,7 +1179,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 2), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, 13), Fret(5, 1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, 1), Fret(11, 13), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -1073,7 +1193,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 11), Fret(3, 14), Fret(4, 19), Fret(5, 7), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 2), Fret(10, 7), Fret(11, 19), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -1086,7 +1207,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 2), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, 7), Fret(5, 21), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, 19), Fret(11, 7), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1101,7 +1223,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 4, 3), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 7), Fret(3, 10), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 19), Fret(9, 22), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -1114,7 +1237,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 1), Finger(3, 3, 2), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 7), Fret(3, 0), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 19), Fret(9, 12), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 2), Fret(4, 0)
@@ -1127,7 +1251,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 7), Fret(3, 10), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 19), Fret(9, 22), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -1140,7 +1265,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 5, 2), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 0), Fret(3, 3), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 12), Fret(9, 15), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 0), Fret(3, 0), Fret(4, 2)
@@ -1153,7 +1279,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 4), Fret(3, 7), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 16), Fret(9, 19), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1167,7 +1294,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 3, 3), Finger(3, 4, 2), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 10), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 22), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -1180,7 +1308,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 1), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 0), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 12), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 2), Fret(4, 0)
@@ -1193,7 +1322,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 2), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 14), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -1206,7 +1336,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 1), Finger(2, 5, 2), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 11), Fret(3, 5), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 17), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 0), Fret(3, 0), Fret(4, 2)
@@ -1219,7 +1350,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 7), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 19), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1233,7 +1365,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 4, 2), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 0)
@@ -1246,7 +1379,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 3), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1259,7 +1393,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 2), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -1272,7 +1407,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 2), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 11), Fret(3, 14), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 2), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -1285,7 +1421,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 2), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, -1), Fret(5, -1), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, -1), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1299,7 +1436,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 3, 3), Finger(3, 4, 2), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, 10), Fret(5, 14), Fret(6, -1),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, 22), Fret(11, 2), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -1312,7 +1450,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 1), Finger(3, 3, 2), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, 0), Fret(5, 13), Fret(6, -1),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, 12), Fret(11, 1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 1), Fret(3, 2), Fret(4, 0)
@@ -1325,7 +1464,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, 2), Fret(5, 6), Fret(6, -1),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, 14), Fret(11, 18), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -1338,7 +1478,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 1), Finger(2, 5, 2), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 11), Fret(3, 2), Fret(4, 5), Fret(5, 9), Fret(6, -1),
-                Fret(7, 19), Fret(8, 23), Fret(9, 14), Fret(10, 17), Fret(11, 21), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 1), Fret(2, 0), Fret(3, 0), Fret(4, 2)
@@ -1351,7 +1492,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, 7), Fret(5, 13), Fret(6, -1),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, 19), Fret(11, 1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1365,7 +1507,8 @@ object ChordData {
             ), listOf(Barre(3, 1, 5, 1)), listOf()),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, 7), Fret(4, 10), Fret(5, 14), Fret(6, 17),
-                Fret(7, 12), Fret(8, 16), Fret(9, 19), Fret(10, 22), Fret(11, 2), Fret(12, 5)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -1378,7 +1521,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, 6), Fret(3, 9), Fret(4, 0), Fret(5, 13), Fret(6, 17),
-                Fret(7, 14), Fret(8, 18), Fret(9, 21), Fret(10, 12), Fret(11, 1), Fret(12, 5)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -1391,7 +1535,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 2), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, 8), Fret(3, 11), Fret(4, 2), Fret(5, 6), Fret(6, 9),
-                Fret(7, 16), Fret(8, 20), Fret(9, 23), Fret(10, 14), Fret(11, 18), Fret(12, 21)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -1404,7 +1549,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 7), Fret(2, 11), Fret(3, 2), Fret(4, 5), Fret(5, 9), Fret(6, 0),
-                Fret(7, 19), Fret(8, 23), Fret(9, 14), Fret(10, 17), Fret(11, 21), Fret(12, 12)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -1417,7 +1563,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 2), Finger(3, 4, 2), Finger(4, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 9), Fret(2, 1), Fret(3, 4), Fret(4, 7), Fret(5, 13), Fret(6, 17),
-                Fret(7, 21), Fret(8, 13), Fret(9, 16), Fret(10, 19), Fret(11, 1), Fret(12, 5)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1431,7 +1578,8 @@ object ChordData {
             ), listOf(Barre(3, 1, 6, 1)), listOf()),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, -1), Fret(4, -1), Fret(5, 2), Fret(6, 3),
-                Fret(7, 0), Fret(8, 4), Fret(9, -1), Fret(10, -1), Fret(11, 2), Fret(12, 3)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 3), Fret(3, 2), Fret(4, 1)
@@ -1444,7 +1592,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 3, 2), Finger(4, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, -1), Fret(3, -1), Fret(4, -1), Fret(5, 0), Fret(6, 1),
-                Fret(7, 2), Fret(8, -1), Fret(9, -1), Fret(10, -1), Fret(11, 0), Fret(12, 1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -1457,7 +1606,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 2), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, -1), Fret(3, -1), Fret(4, -1), Fret(5, 2), Fret(6, 3),
-                Fret(7, 4), Fret(8, -1), Fret(9, -1), Fret(10, -1), Fret(11, 2), Fret(12, 3)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 3), Fret(3, 1), Fret(4, 2)
@@ -1470,7 +1620,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 3), Finger(3, 6, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, -1), Fret(2, -1), Fret(3, -1), Fret(4, -1), Fret(5, 2), Fret(6, 3),
-                Fret(7, 0), Fret(8, -1), Fret(9, -1), Fret(10, -1), Fret(11, 2), Fret(12, 3)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 3)
@@ -1483,7 +1634,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 2), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, -1), Fret(2, -1), Fret(3, 0), Fret(4, 4), Fret(5, -1), Fret(6, 1),
-                Fret(7, -1), Fret(8, -1), Fret(9, 0), Fret(10, 4), Fret(11, -1), Fret(12, 1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 1), Fret(4, 0)
@@ -1497,7 +1649,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 4, 2), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 0), Fret(2, 4), Fret(3, -1), Fret(4, -1), Fret(5, 1), Fret(6, -1),
-                Fret(7, 0), Fret(8, 4), Fret(9, -1), Fret(10, -1), Fret(11, 1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 0), Fret(4, 0)
@@ -1510,7 +1663,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 2), Finger(2, 2, 2), Finger(3, 3, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 2), Fret(2, -1), Fret(3, -1), Fret(4, -1), Fret(5, 0), Fret(6, -1),
-                Fret(7, 2), Fret(8, -1), Fret(9, -1), Fret(10, -1), Fret(11, 0), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -1523,7 +1677,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 3, 1), Finger(2, 4, 1), Finger(3, 5, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, 4), Fret(2, -1), Fret(3, -1), Fret(4, -1), Fret(5, 2), Fret(6, -1),
-                Fret(7, 4), Fret(8, -1), Fret(9, -1), Fret(10, -1), Fret(11, 2), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 4), Fret(2, 2), Fret(3, 1), Fret(4, 2)
@@ -1536,7 +1691,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 1, 3), Finger(2, 2, 2), Finger(3, 6, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, -1), Fret(2, -1), Fret(3, -1), Fret(4, -1), Fret(5, 2), Fret(6, -1),
-                Fret(7, 0), Fret(8, -1), Fret(9, -1), Fret(10, -1), Fret(11, 2), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 2), Fret(2, 0), Fret(3, 0), Fret(4, 2)
@@ -1549,7 +1705,8 @@ object ChordData {
             ), emptyList(), listOf(Finger(1, 2, 2), Finger(2, 3, 1), Finger(3, 4, 2))),
             ChordPosition(Instrument.PIANO, listOf(
                 Fret(1, -1), Fret(2, -1), Fret(3, 0), Fret(4, 4), Fret(5, -1), Fret(6, -1),
-                Fret(7, -1), Fret(8, -1), Fret(9, 0), Fret(10, 4), Fret(11, -1), Fret(12, -1)
+                Fret(7, -1), Fret(8, -1), Fret(9, -1),
+                Fret(10, -1), Fret(11, -1), Fret(12, -1)
             )),
             ChordPosition(Instrument.UKULELE, listOf(
                 Fret(1, 0), Fret(2, 2), Fret(3, 0), Fret(4, 0)
