@@ -8,8 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.unit.dp
 import com.chordfinder.data.Chord
 import com.chordfinder.data.ChordPosition
@@ -174,43 +176,33 @@ fun ChordDiagramCanvas(
         }
 
         // Draw string labels at bottom
+        val paint = android.graphics.Paint().apply {
+            color = android.graphics.Color.GRAY
+            textSize = 12.dp.toPx()
+            textAlign = android.graphics.Paint.Align.CENTER
+        }
         stringLabels.forEachIndexed { i, label ->
             val x = leftPadding + i * stringSpacing
-            drawContext.canvas.nativeCanvas.drawText(
-                label,
-                x,
-                size.height - 5.dp.toPx(),
-                android.graphics.Paint().apply {
-                    color = android.graphics.Color.GRAY
-                    textSize = 12.dp.toPx()
-                    textAlign = android.graphics.Paint.Align.CENTER
-                }
-            )
+            drawContext.canvas.nativeCanvas.drawText(label, x, size.height - 5.dp.toPx(), paint)
         }
 
         // Draw finger positions
         position.frets.forEach { fret ->
-            val stringIndex = strings - fret.string // Reverse for display
+            val stringIndex = strings - fret.string
             val x = leftPadding + stringIndex * stringSpacing
             val y = topPadding + (fret.fret - 0.5f) * fretSpacing
 
             when {
                 fret.fret == -1 -> {
-                    // Muted string - draw X
-                    drawContext.canvas.nativeCanvas.drawText(
-                        "X",
-                        x,
-                        topPadding - 10.dp.toPx(),
-                        android.graphics.Paint().apply {
-                            color = android.graphics.Color.RED
-                            textSize = 18.dp.toPx()
-                            textAlign = android.graphics.Paint.Align.CENTER
-                            isFakeBoldText = true
-                        }
-                    )
+                    val redPaint = android.graphics.Paint().apply {
+                        color = android.graphics.Color.RED
+                        textSize = 18.dp.toPx()
+                        textAlign = android.graphics.Paint.Align.CENTER
+                        isFakeBoldText = true
+                    }
+                    drawContext.canvas.nativeCanvas.drawText("X", x, topPadding - 10.dp.toPx(), redPaint)
                 }
                 fret.fret == 0 -> {
-                    // Open string - draw O
                     drawCircle(
                         color = Color.Blue,
                         radius = 6.dp.toPx(),
@@ -218,7 +210,6 @@ fun ChordDiagramCanvas(
                     )
                 }
                 fret.fret in 1..frets -> {
-                    // Fretted note
                     val fingerNum = fret.finger ?: 0
                     drawCircle(
                         color = if (fingerNum > 0) primaryColor else Color.Gray,
@@ -226,17 +217,13 @@ fun ChordDiagramCanvas(
                         center = Offset(x, y)
                     )
                     if (fingerNum > 0) {
-                        drawContext.canvas.nativeCanvas.drawText(
-                            fingerNum.toString(),
-                            x,
-                            y + 5.dp.toPx(),
-                            android.graphics.Paint().apply {
-                                color = android.graphics.Color.WHITE
-                                textSize = 14.dp.toPx()
-                                textAlign = android.graphics.Paint.Align.CENTER
-                                isFakeBoldText = true
-                            }
-                        )
+                        val whitePaint = android.graphics.Paint().apply {
+                            color = android.graphics.Color.WHITE
+                            textSize = 14.dp.toPx()
+                            textAlign = android.graphics.Paint.Align.CENTER
+                            isFakeBoldText = true
+                        }
+                        drawContext.canvas.nativeCanvas.drawText(fingerNum.toString(), x, y + 5.dp.toPx(), whitePaint)
                     }
                 }
             }
@@ -255,17 +242,13 @@ fun ChordDiagramCanvas(
                 strokeWidth = 20.dp.toPx()
             )
 
-            drawContext.canvas.nativeCanvas.drawText(
-                barre.finger.toString(),
-                (startX + endX) / 2,
-                y + 6.dp.toPx(),
-                android.graphics.Paint().apply {
-                    color = android.graphics.Color.WHITE
-                    textSize = 14.dp.toPx()
-                    textAlign = android.graphics.Paint.Align.CENTER
-                    isFakeBoldText = true
-                }
-            )
+            val whitePaint = android.graphics.Paint().apply {
+                color = android.graphics.Color.WHITE
+                textSize = 14.dp.toPx()
+                textAlign = android.graphics.Paint.Align.CENTER
+                isFakeBoldText = true
+            }
+            drawContext.canvas.nativeCanvas.drawText(barre.finger.toString(), (startX + endX) / 2, y + 6.dp.toPx(), whitePaint)
         }
     }
 }
@@ -285,48 +268,43 @@ fun PianoKeyboard(
         val blackKeyHeight = whiteKeyHeight * 0.6f
 
         // White keys: C D E F G A B (indices 0-6)
-        val whiteKeyNotes = listOf("C", "D", "E", "F", "G", "A", "B")
         for (i in 0 until 7) {
             val x = i * whiteKeyWidth
-            // Draw key outline
             drawRect(
                 color = Color.White,
                 topLeft = Offset(x, 0f),
-                size = androidx.compose.ui.geometry.Size(whiteKeyWidth - 2, whiteKeyHeight)
+                size = Size(whiteKeyWidth - 2, whiteKeyHeight)
             )
             drawRect(
                 color = onSurfaceColor,
                 topLeft = Offset(x, 0f),
-                size = androidx.compose.ui.geometry.Size(whiteKeyWidth - 2, whiteKeyHeight),
+                size = Size(whiteKeyWidth - 2, whiteKeyHeight),
                 style = androidx.compose.ui.graphics.drawscope.Stroke(width = 1.dp.toPx())
             )
         }
 
         // Black keys positions: between 0-1, 1-2, 3-4, 4-5, 5-6
         val blackKeyPositions = listOf(0, 1, 3, 4, 5)
-        val blackKeyNotes = listOf("C#", "D#", "F#", "G#", "A#")
 
         for (i in blackKeyPositions.indices) {
             val x = (blackKeyPositions[i] + 1) * whiteKeyWidth - blackKeyWidth / 2
             drawRect(
                 color = onSurfaceColor,
                 topLeft = Offset(x, 0f),
-                size = androidx.compose.ui.geometry.Size(blackKeyWidth, blackKeyHeight)
+                size = Size(blackKeyWidth, blackKeyHeight)
             )
         }
 
         // Highlight keys that are in the chord
         val activeFrets = position.frets.filter { it.fret > 0 }
         activeFrets.forEach { fret ->
-            // Map fret to key index (fret 1 = C, fret 3 = D, etc. in first octave)
-            // Simplified: just show which white keys are active
             val keyIndex = (fret.fret - 1) % 7
             if (keyIndex in 0 until 7) {
                 val x = keyIndex * whiteKeyWidth
                 drawRect(
                     color = primaryColor.copy(alpha = 0.7f),
-                    topLeft = Offset(x + 2, 2),
-                    size = androidx.compose.ui.geometry.Size(whiteKeyWidth - 4, whiteKeyHeight - 4)
+                    topLeft = Offset(x + 2f, 2f),
+                    size = Size(whiteKeyWidth - 4, whiteKeyHeight - 4)
                 )
             }
         }
