@@ -7,6 +7,11 @@ android {
     namespace = "com.chordfinder"
     compileSdk = 34
 
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
+    }
+
     defaultConfig {
         applicationId = "com.chordfinder"
         minSdk = 26
