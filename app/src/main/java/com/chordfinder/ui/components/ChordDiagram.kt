@@ -291,7 +291,7 @@ fun PianoKeyboard(
         // Highlight keys that are in the chord
         val whiteKeyNoteOffsets = listOf(0, 2, 4, 5, 7, 9, 11) // C, D, E, F, G, A, B
         val blackKeyNoteOffsets = listOf(1, 3, 6, 8, 10) // C#, D#, F#, G#, A#
-        val blackKeyDrawPositions = listOf(1, 3, 6, 8, 10) // white key indices where black keys appear
+        val blackKeyDrawPositions = listOf(1, 2, 4, 5, 6) // white key indices where black keys appear (between white keys)
 
         position.frets.forEach { fret ->
             if (fret.fret < 0) return@forEach
