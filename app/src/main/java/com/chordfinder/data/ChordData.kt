@@ -86,6 +86,12 @@ object ChordData {
             .replace("SUS2", "")
             .replace("SUS4", "")
             .replace("SUS", "")
+            // Handle add chords - keep numbers for ADD2/ADD11, ADD9 stays as ADD
+            .replace("ADD9", "ADD")
+            .replace("ADD2", "")  // temporary placeholder
+            .replace("ADD11", "")
+            .replace("", "ADD2")
+            .replace("", "ADD11")
             .replace("b", "B")
             .replace("#", "S")
             .replace("♯", "S")
@@ -104,8 +110,14 @@ object ChordData {
         val fullMatch = chords.keys.find { it == normalized }
         if (fullMatch != null) return chords[fullMatch]
 
+        // Handle sus4 chords - JSON uses GSUS instead of GSUS4
+        if (normalized.endsWith("SUS4")) {
+            val susKey = normalized.replace("SUS4", "SUS")
+            chords[susKey]?.let { return it }
+        }
+
         // Parse chord: root + optional sharp/flat + suffix
-        val rootMatch = Regex("^([A-G])(S(?!US)|B)?(M7|MAJ7|AUG7|SUS2|SUS4|DIM|AUG|ADD[0-9]+|7NO[357]|[0-9]+|M|7)?$").find(normalized)
+        val rootMatch = Regex("^([A-G])(S(?!US)|B)?(M7|MAJ7|AUG7|SUS2|SUS4|ADD2|ADD11|ADD|DIM|AUG|7NO[357]|[0-9]+|M|7)?$").find(normalized)
         if (rootMatch != null) {
             val noteLetter = rootMatch.groupValues[1]
             val accidental = rootMatch.groupValues[2]
@@ -125,11 +137,15 @@ object ChordData {
                 suffix == "MAJ7" -> "${root}MAJ7"
                 suffix == "AUG7" -> "${root}AUG7"
                 suffix == "SUS2" -> "${root}SUS2"
-                suffix == "SUS4" -> "${root}SUS4"
+                suffix == "SUS4" -> "${root}SUS"  // JSON uses GSUS for Gsus4
                 suffix.startsWith("M") && suffix.endsWith("7") -> "${root}M7"
-                suffix.startsWith("DIM") -> "${root}DIM"
-                suffix.startsWith("AUG") -> "${root}AUG"
-                suffix.startsWith("ADD") -> "${root}ADD${suffix.substring(3)}"
+                suffix == "DIM" -> "${root}DIM"
+                suffix == "DIM7" -> "${root}DIM7"
+                suffix == "AUG" -> "${root}AUG"
+                suffix == "AUG7" -> "${root}AUG7"
+                suffix == "ADD" -> "${root}ADD"
+                suffix == "ADD2" -> "${root}ADD2"
+                suffix == "ADD11" -> "${root}ADD11"
                 suffix.startsWith("7NO3") -> "${root}7NO3"
                 suffix.startsWith("7NO5") -> "${root}7NO5"
                 suffix.startsWith("7NO7") -> "${root}7NO7"
@@ -142,5 +158,43 @@ object ChordData {
         }
 
         return null
+    }
+
+    /**
+     * Returns list of all chord names for autocomplete
+     */
+    fun getAllChordNames(): List<String> {
+        if (!::chords.isInitialized) return getDefaultChordNames()
+        return chords.values.map { it.name }.sorted()
+    }
+
+    /**
+     * Fallback list of common chords for autocomplete when data not loaded
+     */
+    private fun getDefaultChordNames(): List<String> {
+        return listOf(
+            "C", "Cm", "C7", "Cmaj7", "Cm7", "Cadd9", "Csus2", "Csus4",
+            "D", "Dm", "D7", "Dmaj7", "Dm7", "Dadd9", "Dsus2", "Dsus4",
+            "E", "Em", "E7", "Emaj7", "Em7", "Eadd9", "Esus2", "Esus4",
+            "F", "Fm", "F7", "Fmaj7", "Fm7", "Fadd9", "Fsus2", "Fsus4",
+            "G", "Gm", "G7", "Gmaj7", "Gm7", "Gadd9", "Gsus2", "Gsus4",
+            "A", "Am", "A7", "Amaj7", "Am7", "Aadd9", "Asus2", "Asus4",
+            "B", "Bm", "B7", "Bmaj7", "Bm7", "Badd9", "Bsus2", "Bsus4"
+        )
+    }
+
+    /**
+     * Search chords by query string (case-insensitive prefix match)
+     * Returns up to maxResults matching chord names
+     */
+    fun searchChords(query: String, maxResults: Int = 10): List<String> {
+        if (!::chords.isInitialized || query.isBlank()) return emptyList()
+
+        val normalizedQuery = query.trim().uppercase()
+        val allNames = getAllChordNames()
+
+        return allNames
+            .filter { it.uppercase().startsWith(normalizedQuery) }
+            .take(maxResults)
     }
 }

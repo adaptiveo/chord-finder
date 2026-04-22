@@ -7,6 +7,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -23,8 +24,22 @@ import com.chordfinder.ui.components.*
 fun ChordFinderApp() {
     var query by remember { mutableStateOf("") }
     var selectedTab by remember { mutableIntStateOf(1) } // Default to Piano
+    var suggestions by remember { mutableStateOf(listOf<String>()) }
+    var showSuggestions by remember { mutableStateOf(false) }
     val tabs = listOf("Guitar", "Piano", "Ukulele")
     val colorScheme = MaterialTheme.colorScheme
+
+    // Update suggestions when query changes
+    LaunchedEffect(query) {
+        if (query.length >= 1) {
+            val results = ChordData.searchChords(query, maxResults = 8)
+            suggestions = results
+            showSuggestions = results.isNotEmpty()
+        } else {
+            showSuggestions = false
+            suggestions = emptyList()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -47,41 +62,86 @@ fun ChordFinderApp() {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Search field with Material 3 styling
-        OutlinedTextField(
-            value = query,
-            onValueChange = { query = it },
-            label = { Text("Enter chord") },
-            placeholder = { Text("e.g. C, Am, G7, Fsus2") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = "Search",
-                    tint = colorScheme.onSurfaceVariant
-                )
-            },
-            trailingIcon = if (query.isNotEmpty()) {
-                {
-                    IconButton(onClick = { query = "" }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Info,
-                            contentDescription = "Clear",
-                            tint = colorScheme.onSurfaceVariant
-                        )
+        // Search field with autocomplete using ExposedDropdownMenuBox
+        var expanded by remember { mutableStateOf(false) }
+
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = { expanded = it },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            OutlinedTextField(
+                value = query,
+                onValueChange = {
+                    query = it
+                    if (it.length >= 1) {
+                        suggestions = ChordData.searchChords(it, maxResults = 8)
+                        expanded = suggestions.isNotEmpty()
+                    } else {
+                        expanded = false
                     }
-                }
-            } else null,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = { }),
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = colorScheme.surface,
-                unfocusedContainerColor = colorScheme.surfaceVariant.copy(alpha = 0.3f),
-                focusedIndicatorColor = colorScheme.primary,
-                unfocusedIndicatorColor = colorScheme.outline
+                },
+                label = { Text("Enter chord") },
+                placeholder = { Text("e.g. C, Am, G7, Fsus2") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .menuAnchor(),
+                singleLine = true,
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Search",
+                        tint = colorScheme.onSurfaceVariant
+                    )
+                },
+                trailingIcon = {
+                    if (query.isNotEmpty()) {
+                        IconButton(
+                            onClick = {
+                                query = ""
+                                expanded = false
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.Clear,
+                                contentDescription = "Clear",
+                                tint = colorScheme.onSurfaceVariant,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
+                    } else {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                    }
+                },
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(
+                    onSearch = { expanded = false }
+                ),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = colorScheme.surface,
+                    unfocusedContainerColor = colorScheme.surfaceVariant.copy(alpha = 0.3f),
+                    focusedIndicatorColor = colorScheme.primary,
+                    unfocusedIndicatorColor = colorScheme.outline
+                )
             )
-        )
+
+            // Material3 ExposedDropdownMenu
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                suggestions.forEach { chordName ->
+                    DropdownMenuItem(
+                        text = { Text(chordName) },
+                        onClick = {
+                            query = chordName
+                            expanded = false
+                        }
+                    )
+                }
+            }
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 

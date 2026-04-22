@@ -1,7 +1,7 @@
 # PROJECT - Chord Finder
 
 **Статус:** [x] В разработке / [ ] В продакшене / [ ] Заморожен  
-**Последнее обновление:** 2026-04-22  
+**Последнее обновление:** 2026-04-22 (добавлено автодополнение)  
 **Ответственный:** @user  
 
 ## Описание
@@ -43,6 +43,7 @@ chord-finder/
 │   ├── PROJECT.md     # Этот файл
 │   ├── ERRORLOG.md    # Журнал ошибок
 │   ├── NB.md          # Nota Bene (важные заметки)
+│   ├── BACKLOG.md     # Предложения по улучшению
 │   └── adr/           # Architecture Decision Records
 │       ├── ADR-001-*.md
 │       └── ADR-002-*.md
@@ -92,9 +93,10 @@ chord-finder/
 
 ### Основные фичи
 1. **Chord Input** — Поле ввода для названия аккорда (например, "C", "Dm7", "F#m")
-2. **Instrument Tabs** — Табы: Guitar | Piano | Ukulele
-3. **Chord Diagram Display** — Визуальная диаграмма с позициями пальцев
-4. **Multiple Positions** — Прокрутка всех доступных позиций
+2. **Autocomplete Dropdown** — Подсказки при вводе (C → C, C7, Cm, Cmaj7...)
+3. **Instrument Tabs** — Табы: Guitar | Piano | Ukulele
+4. **Chord Diagram Display** — Визуальная диаграмма с позициями пальцев
+5. **Multiple Positions** — Прокрутка всех доступных позиций
 
 ### UI/UX
 - Material Design 3, чистый минималистичный стиль
@@ -107,7 +109,8 @@ chord-finder/
 
 | ADR | Дата | Тема | Статус |
 |-----|------|------|--------|
-| [ADR-001](adr/ADR-001-*.md) | YYYY-MM-DD | Описание | 📝 Предложено |
+| [ADR-001](adr/ADR-001-piano-chord-display.md) | 2026-04-22 | Piano Chord Display | ✅ Принято |
+| [ADR-002](adr/ADR-002-autocomplete-dropdown.md) | 2026-04-22 | Autocomplete Dropdown | ✅ Принято |
 
 > Каждое значимое изменение (не багфикс) оформляется как ADR в папке `adr/`
 

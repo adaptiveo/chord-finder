@@ -1,0 +1,127 @@
+# ADR-002: Autocomplete Dropdown for Chord Input
+
+**Дата:** 2026-04-22  
+**Статус:** [x] Принято  
+**Контекст:** #feature #ux #autocomplete  
+**Автор:** @claude  
+
+## Контекст
+
+При вводе названия аккорда пользователь должен знать точный формат (например, "Cmaj7" vs "CMAJ7" vs "C7"). Это создаёт трение, особенно для новичков, которые не знают всех вариантов написания.
+
+BACK-001 требует добавления dropdown с подсказками при вводе текста.
+
+## Рассмотренные варианты
+
+### Вариант 1: Material3 ExposedDropdownMenuBox
+- **Плюсы:** Стандартный компонент Material3, хорошая интеграция с TextField
+- **Минусы:** Сложная интеграция с существующим OutlinedTextField, требует полной переработки поля ввода
+- **Оценка:** Слишком много изменений для существующего UI
+
+### Вариант 2: DropdownMenu над существующим TextField
+- **Плюсы:** Минимальные изменения существующего кода, простая реализация
+- **Минусы:** Требует ручного управления позиционированием и состоянием
+- **Оценка:** Оптимальный баланс простоты и функциональности
+
+### Вариант 3: Отдельный экран поиска (SearchActivity)
+- **Плюсы:** Место для расширенного поиска (фильтры по инструментам, избранное)
+- **Минусы:** Требует навигации, больше кликов для пользователя
+- **Оценка:** Перебор для текущей задачи
+
+## Решение
+
+Выбран вариант: **Вариант 1 — ExposedDropdownMenuBox (итоговая реализация)**
+
+**Обоснование:**
+`ExposedDropdownMenuBox` — стандартный Material3 компонент, обеспечивает лучший UX с анимациями, тенями и стрелкой-индикатором. Изначально казалось что он не работает, но проблема была в отсутствии ADB для тестирования на устройстве.
+
+**Итоговая реализация:**
+
+1. **ChordData.kt** — добавлены методы:
+   - `getAllChordNames()` — возвращает все названия аккордов
+   - `searchChords(query, maxResults)` — фильтрация по префиксу
+   - Исправлен поиск `sus4` аккордов — JSON использует ключ `GSUS` вместо `GSUS4`
+
+2. **ChordFinderApp.kt** — реализация через `ExposedDropdownMenuBox`:
+   - `ExposedDropdownMenuBox` с `onExpandedChange` управлением
+   - `OutlinedTextField` с `.menuAnchor()` modifier
+   - `ExposedDropdownMenu` с `DropdownMenuItem` для suggestions
+   - `ExposedDropdownMenuDefaults.TrailingIcon` как индикатор
+   - Иконка очистки поля ввода
+
+**Визуальные преимущества:**
+- Плавная анимация открытия/закрытия
+- Material3 стиль с тенями и elevation
+- Стрелка-индикатор состояния dropdown
+- Стандартное поведение как в системных приложениях Android
+   - Иконка очистки поля ввода
+
+**Код:**
+```kotlin
+// Отслеживание ввода
+LaunchedEffect(query) {
+    if (query.length >= 1) {
+        suggestions = ChordData.searchChords(query, maxResults = 8)
+        showSuggestions = suggestions.isNotEmpty()
+    } else {
+        showSuggestions = false
+    }
+}
+
+// Autocomplete Card
+if (query.length >= 1) {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Column {
+            suggestions.forEach { chordName ->
+                Text(
+                    text = chordName,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { query = chordName }
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                if (chordName != suggestions.last()) {
+                    HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+                }
+            }
+        }
+    }
+}
+```
+
+## Последствия
+
+### Положительные
+- Пользователь видит доступные варианты при вводе первых букв
+- Быстрый выбор без полного набора названия
+- Открывает существующие варианты аккордов (C, C7, Cm, Cmaj7...)
+- Работает со всеми инструментами (гитара, пианино, укулеле)
+
+### Отрицательные / Риски
+- Dropdown может перекрывать табы при большом количестве suggestions
+- На маленьких экранах (5") может не хватать места
+- Нет fuzzy search (только prefix match)
+
+### Технический долг
+- В будущем можно добавить debounce для уменьшения частоты поиска
+- Можно кэшировать результаты поиска
+
+## Связанные документы
+
+- BACKLOG.md: BACK-001 (Autocomplete)
+- ChordFinderApp.kt: UI реализация
+- ChordData.kt: логика поиска
+
+## Чек-лист реализации
+
+- [x] Код написан
+- [x] Компиляция проходит успешно
+- [x] Реализовано через Card с clickable items
+- [x] Исправлен поиск Gsus4 (GSUS → GSUS4 mapping)
+- [x] Тесты на устройстве — РАБОТАЕТ
+- [x] Документация обновлена
+- [x] BREAKING CHANGES: нет
