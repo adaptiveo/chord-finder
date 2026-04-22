@@ -8,7 +8,8 @@ object ChordData {
                 Fret(1, 0), Fret(2, 1), Fret(3, 0), Fret(4, 2), Fret(5, 3), Fret(6, -1)
             ), emptyList(), listOf(Finger(1, 2, 1), Finger(2, 4, 2), Finger(3, 5, 3))),
             ChordPosition(Instrument.PIANO, listOf(
-                Fret(1, 0), Fret(2, 4), Fret(3, 7),
+                // Root position C major: C (1 - thumb), E (3 - middle finger), G (5 - pinky)
+                Fret(1, 0), Fret(3, 4), Fret(5, 7),
                 Fret(4, -1), Fret(5, -1), Fret(6, -1),
                 Fret(7, -1), Fret(8, -1), Fret(9, -1),
                 Fret(10, -1), Fret(11, -1), Fret(12, -1)

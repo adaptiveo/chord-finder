@@ -88,17 +88,41 @@ fun PianoChordDiagram(chord: Chord) {
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
+        // Display chord notes text (e.g., "C major = C, E, G")
+        if (position != null) {
+            val notesText = position.frets
+                .filter { it.fret >= 0 }
+                .sortedBy { it.fret }
+                .joinToString(", ") { getNoteName(it.fret) }
+            if (notesText.isNotEmpty()) {
+                Text(
+                    text = "${chord.name} = $notesText",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+        }
+
         if (position != null) {
             PianoKeyboard(
                 position = position,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
+                    .height(140.dp)
             )
         }
 
         Spacer(modifier = Modifier.height(8.dp))
     }
+}
+
+// Convert semitone number to note name
+private fun getNoteName(semitone: Int): String {
+    val noteNames = listOf("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
+    val normalizedSemitone = semitone % 12
+    val octave = semitone / 12
+    return "${noteNames[normalizedSemitone]}${octave}"
 }
 
 @Composable
@@ -258,6 +282,10 @@ fun PianoKeyboard(
         val whiteKeyHeight = size.height
         val blackKeyWidth = whiteKeyWidth * 0.6f
         val blackKeyHeight = whiteKeyHeight * 0.6f
+        val labelPadding = 16.dp.toPx()
+
+        // Note names for white keys (C, D, E, F, G, A, B repeated for 2 octaves)
+        val whiteKeyLabels = listOf("C", "D", "E", "F", "G", "A", "B", "C", "D", "E", "F", "G", "A", "B")
 
         // White keys: C D E F G A B C D E F G A B (2 octaves, indices 0-13)
         for (i in 0 until 14) {
@@ -272,6 +300,22 @@ fun PianoKeyboard(
                 topLeft = Offset(x, 0f),
                 size = Size(whiteKeyWidth - 2, whiteKeyHeight),
                 style = androidx.compose.ui.graphics.drawscope.Stroke(width = 1.dp.toPx())
+            )
+
+            // Draw note label at bottom of white key
+            val labelPaint = android.graphics.Paint().apply {
+                color = android.graphics.Color.DKGRAY
+                textSize = 14.dp.toPx()
+                textAlign = android.graphics.Paint.Align.CENTER
+                isFakeBoldText = true
+            }
+            val labelX = x + (whiteKeyWidth - 2) / 2
+            val labelY = whiteKeyHeight - labelPadding
+            drawContext.canvas.nativeCanvas.drawText(
+                whiteKeyLabels[i],
+                labelX,
+                labelY,
+                labelPaint
             )
         }
 
@@ -293,6 +337,9 @@ fun PianoKeyboard(
         val blackKeyNoteOffsets = listOf(1, 3, 6, 8, 10) // C#, D#, F#, G#, A#
         val blackKeyDrawPositions = listOf(1, 2, 4, 5, 6) // white key indices where black keys appear (between white keys)
 
+        // Track which notes are highlighted for drawing finger numbers
+        val highlightedNotes = mutableListOf<Pair<Int, Int>>() // (semitone, finger)
+
         position.frets.forEach { fret ->
             if (fret.fret < 0) return@forEach
 
@@ -310,6 +357,7 @@ fun PianoKeyboard(
                         topLeft = Offset(x + 2f, 2f),
                         size = Size(whiteKeyWidth - 4, whiteKeyHeight - 4)
                     )
+                    highlightedNotes.add(fret.fret to fret.string)
                 }
             }
 
@@ -324,6 +372,55 @@ fun PianoKeyboard(
                         topLeft = Offset(x + 1f, 0f),
                         size = Size(blackKeyWidth - 2, blackKeyHeight - 2)
                     )
+                    highlightedNotes.add(fret.fret to fret.string)
+                }
+            }
+        }
+
+        // Draw finger numbers for highlighted keys
+        val fingerPaint = android.graphics.Paint().apply {
+            color = android.graphics.Color.WHITE
+            textSize = 12.dp.toPx()
+            textAlign = android.graphics.Paint.Align.CENTER
+            isFakeBoldText = true
+        }
+
+        position.frets.forEach { fret ->
+            if (fret.fret < 0 || fret.string <= 0) return@forEach
+
+            val noteOffset = fret.fret % 12
+            val octave = fret.fret / 12
+            val fingerNumber = fret.string // Using string field for finger number
+
+            // White keys - draw finger number in center of highlighted area
+            val whitePosIndex = whiteKeyNoteOffsets.indexOf(noteOffset)
+            if (whitePosIndex >= 0) {
+                val keyIndex = octave * 7 + whitePosIndex
+                if (keyIndex in 0 until 14) {
+                    val x = keyIndex * whiteKeyWidth + (whiteKeyWidth - 2) / 2
+                    val y = whiteKeyHeight * 0.4f
+                    drawContext.canvas.nativeCanvas.drawText(
+                        fingerNumber.toString(),
+                        x,
+                        y,
+                        fingerPaint
+                    )
+                }
+            } else {
+                // Black keys
+                val blackPosIndex = blackKeyNoteOffsets.indexOf(noteOffset)
+                if (blackPosIndex >= 0) {
+                    val keyIndex = octave * 7 + blackKeyDrawPositions[blackPosIndex]
+                    if (keyIndex in 1 until 14) {
+                        val x = keyIndex * whiteKeyWidth - blackKeyWidth / 2 + blackKeyWidth / 2
+                        val y = blackKeyHeight * 0.5f
+                        drawContext.canvas.nativeCanvas.drawText(
+                            fingerNumber.toString(),
+                            x,
+                            y,
+                            fingerPaint
+                        )
+                    }
                 }
             }
         }
