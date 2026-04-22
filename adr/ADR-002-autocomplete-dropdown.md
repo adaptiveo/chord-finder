@@ -54,40 +54,68 @@ BACK-001 требует добавления dropdown с подсказками 
 - Material3 стиль с тенями и elevation
 - Стрелка-индикатор состояния dropdown
 - Стандартное поведение как в системных приложениях Android
-   - Иконка очистки поля ввода
+- Иконка очистки поля ввода
 
 **Код:**
 ```kotlin
-// Отслеживание ввода
+var query by remember { mutableStateOf("") }
+var suggestions by remember { mutableStateOf(listOf<String>()) }
+var expanded by remember { mutableStateOf(false) }
+var justSelected by remember { mutableStateOf(false) } // Флаг для предотвращения повторного открытия
+
+// Отслеживание ввода с защитой от повторного открытия
 LaunchedEffect(query) {
+    if (justSelected) {
+        kotlinx.coroutines.delay(300)
+        justSelected = false
+        return@LaunchedEffect
+    }
     if (query.length >= 1) {
         suggestions = ChordData.searchChords(query, maxResults = 8)
-        showSuggestions = suggestions.isNotEmpty()
+        expanded = suggestions.isNotEmpty()
     } else {
-        showSuggestions = false
+        expanded = false
     }
 }
 
-// Autocomplete Card
-if (query.length >= 1) {
-    Card(
-        modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Column {
-            suggestions.forEach { chordName ->
-                Text(
-                    text = chordName,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { query = chordName }
-                        .padding(horizontal = 16.dp, vertical = 12.dp),
-                    style = MaterialTheme.typography.bodyLarge
-                )
-                if (chordName != suggestions.last()) {
-                    HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
-                }
+// ExposedDropdownMenuBox с Material3 стилем
+ExposedDropdownMenuBox(
+    expanded = expanded,
+    onExpandedChange = { expanded = it },
+    modifier = Modifier.fillMaxWidth()
+) {
+    OutlinedTextField(
+        value = query,
+        onValueChange = {
+            query = it
+            if (it.length >= 1) {
+                suggestions = ChordData.searchChords(it, maxResults = 8)
+                expanded = suggestions.isNotEmpty()
+            } else {
+                expanded = false
             }
+        },
+        modifier = Modifier.fillMaxWidth().menuAnchor(),
+        singleLine = true,
+        trailingIcon = {
+            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+        }
+    )
+
+    ExposedDropdownMenu(
+        expanded = expanded,
+        onDismissRequest = { expanded = false },
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        suggestions.forEach { chordName ->
+            DropdownMenuItem(
+                text = { Text(chordName) },
+                onClick = {
+                    justSelected = true // Установить флаг перед изменением query
+                    query = chordName
+                    expanded = false
+                }
+            )
         }
     }
 }
@@ -110,6 +138,13 @@ if (query.length >= 1) {
 - В будущем можно добавить debounce для уменьшения частоты поиска
 - Можно кэшировать результаты поиска
 
+### Известные баги и решения
+
+**Баг:** Dropdown повторно открывался после выбора (ERR-009)
+- **Симптом:** При выборе "G" список закрывался и тут же открывался снова
+- **Причина:** `LaunchedEffect(query)` реагировал на изменение `query` и пересчитывал suggestions
+- **Решение:** Флаг `justSelected` с задержкой 300ms для пропуска одного цикла LaunchedEffect
+
 ## Связанные документы
 
 - BACKLOG.md: BACK-001 (Autocomplete)
@@ -120,8 +155,9 @@ if (query.length >= 1) {
 
 - [x] Код написан
 - [x] Компиляция проходит успешно
-- [x] Реализовано через Card с clickable items
+- [x] Реализовано через ExposedDropdownMenuBox
 - [x] Исправлен поиск Gsus4 (GSUS → GSUS4 mapping)
+- [x] Исправлен баг с повторным открытием dropdown (ERR-009)
 - [x] Тесты на устройстве — РАБОТАЕТ
 - [x] Документация обновлена
 - [x] BREAKING CHANGES: нет

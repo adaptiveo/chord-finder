@@ -18,6 +18,16 @@
 
 ---
 
+### ERR-009: Dropdown не закрывается после выбора элемента
+- **Дата:** 2026-04-22
+- **Проект:** chord-finder
+- **Контекст:** Реализация BACK-001 (Autocomplete dropdown)
+- **Ошибка:** При выборе "G" из списка dropdown открывается снова
+- **Причина:** LaunchedEffect(query) реагирует на изменение query и пересчитывает suggestions, открывая dropdown
+- **Решение:** Добавить флаг `justSelected` — при выборе устанавливать флаг, а в LaunchedEffect пропускать обновление с задержкой 300ms
+- **Профилактика:** При изменении state из UI всегда учитывать side-effects от других observers (LaunchedEffect)
+- **Теги:** #ui #compose #state-management #bug
+
 ### ERR-001: PyInstaller кэширует старый код
 - **Дата:** 2026-04-21
 - **Проект:** checkinn.gui

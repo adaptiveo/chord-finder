@@ -26,11 +26,18 @@ fun ChordFinderApp() {
     var selectedTab by remember { mutableIntStateOf(1) } // Default to Piano
     var suggestions by remember { mutableStateOf(listOf<String>()) }
     var showSuggestions by remember { mutableStateOf(false) }
+    var justSelected by remember { mutableStateOf(false) } // Flag to prevent reopen after selection
     val tabs = listOf("Guitar", "Piano", "Ukulele")
     val colorScheme = MaterialTheme.colorScheme
 
     // Update suggestions when query changes
     LaunchedEffect(query) {
+        if (justSelected) {
+            // Skip showing suggestions after selection, reset flag after delay
+            kotlinx.coroutines.delay(300)
+            justSelected = false
+            return@LaunchedEffect
+        }
         if (query.length >= 1) {
             val results = ChordData.searchChords(query, maxResults = 8)
             suggestions = results
@@ -135,6 +142,7 @@ fun ChordFinderApp() {
                     DropdownMenuItem(
                         text = { Text(chordName) },
                         onClick = {
+                            justSelected = true
                             query = chordName
                             expanded = false
                         }
