@@ -22,11 +22,20 @@
 - **Дата:** 2026-04-22
 - **Проект:** chord-finder
 - **Контекст:** Реализация BACK-001 (Autocomplete dropdown)
-- **Ошибка:** При выборе "G" из списка dropdown открывается снова
-- **Причина:** LaunchedEffect(query) реагирует на изменение query и пересчитывает suggestions, открывая dropdown
-- **Решение:** Добавить флаг `justSelected` — при выборе устанавливать флаг, а в LaunchedEffect пропускать обновление с задержкой 300ms
-- **Профилактика:** При изменении state из UI всегда учитывать side-effects от других observers (LaunchedEffect)
+- **Ошибка:** 
+  1. При выборе "G" из списка dropdown открывается снова
+  2. При выборе **первого элемента** списка dropdown не закрывался
+- **Причина:** 
+  1. LaunchedEffect(query) реагирует на изменение query и пересчитывает suggestions, открывая dropdown
+  2. `onValueChange` в OutlinedTextField тоже устанавливал `expanded = true`, создавая конфликт с LaunchedEffect
+- **Решение:** 
+  1. Добавить флаг `justSelected` — при выборе устанавливать флаг, а в LaunchedEffect пропускать обновление с задержкой 300ms
+  2. Убрать установку `expanded` из `onValueChange` — пусть только LaunchedEffect управляет состоянием dropdown
+- **Профилактика:** 
+  - При изменении state из UI всегда учитывать side-effects от других observers (LaunchedEffect)
+  - Не дублировать управление одним и тем же state'ом из разных мест
 - **Теги:** #ui #compose #state-management #bug
+- **Статус:** ✅ Исправлено и протестировано на устройстве
 
 ### ERR-001: PyInstaller кэширует старый код
 - **Дата:** 2026-04-21

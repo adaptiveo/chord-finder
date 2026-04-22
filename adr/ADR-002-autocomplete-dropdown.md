@@ -63,9 +63,10 @@ var suggestions by remember { mutableStateOf(listOf<String>()) }
 var expanded by remember { mutableStateOf(false) }
 var justSelected by remember { mutableStateOf(false) } // Флаг для предотвращения повторного открытия
 
-// Отслеживание ввода с защитой от повторного открытия
+// LaunchedEffect — единственное место управления dropdown
 LaunchedEffect(query) {
     if (justSelected) {
+        // Пропускаем обновление после выбора элемента
         kotlinx.coroutines.delay(300)
         justSelected = false
         return@LaunchedEffect
@@ -75,6 +76,7 @@ LaunchedEffect(query) {
         expanded = suggestions.isNotEmpty()
     } else {
         expanded = false
+        suggestions = emptyList()
     }
 }
 
@@ -88,17 +90,25 @@ ExposedDropdownMenuBox(
         value = query,
         onValueChange = {
             query = it
-            if (it.length >= 1) {
-                suggestions = ChordData.searchChords(it, maxResults = 8)
-                expanded = suggestions.isNotEmpty()
-            } else {
-                expanded = false
-            }
+            // ⚠️ НЕ устанавливаем expanded здесь! 
+            // Только LaunchedEffect управляет состоянием dropdown
         },
         modifier = Modifier.fillMaxWidth().menuAnchor(),
         singleLine = true,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = "Search"
+            )
+        },
         trailingIcon = {
-            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+            if (query.isNotEmpty()) {
+                IconButton(onClick = { query = "" }) {
+                    Icon(Icons.Outlined.Clear, "Clear")
+                }
+            } else {
+                ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+            }
         }
     )
 
@@ -111,7 +121,7 @@ ExposedDropdownMenuBox(
             DropdownMenuItem(
                 text = { Text(chordName) },
                 onClick = {
-                    justSelected = true // Установить флаг перед изменением query
+                    justSelected = true // Установить флаг ПЕРЕД изменением query
                     query = chordName
                     expanded = false
                 }
@@ -140,10 +150,16 @@ ExposedDropdownMenuBox(
 
 ### Известные баги и решения
 
-**Баг:** Dropdown повторно открывался после выбора (ERR-009)
+**Баг 1:** Dropdown повторно открывался после выбора (ERR-009)
 - **Симптом:** При выборе "G" список закрывался и тут же открывался снова
 - **Причина:** `LaunchedEffect(query)` реагировал на изменение `query` и пересчитывал suggestions
 - **Решение:** Флаг `justSelected` с задержкой 300ms для пропуска одного цикла LaunchedEffect
+
+**Баг 2:** Первый элемент списка не закрывал dropdown (ERR-009)
+- **Симптом:** При выборе первого элемента (например, "G") dropdown оставался открытым
+- **Причина:** `onValueChange` в OutlinedTextField тоже устанавливал `expanded = true`, создавая конфликт с LaunchedEffect
+- **Решение:** Убрать управление `expanded` из `onValueChange` — пусть только LaunchedEffect контролирует состояние
+- **Важно:** Использовать `justSelected = true` **ПЕРЕД** изменением `query` в `onClick`
 
 ## Связанные документы
 
