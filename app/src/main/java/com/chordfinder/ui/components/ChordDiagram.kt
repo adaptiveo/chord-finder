@@ -51,15 +51,18 @@ fun GuitarChordDiagram(chord: Chord) {
 @Composable
 fun UkuleleChordDiagram(chord: Chord) {
     val position = chord.positions.find { it.instrument == Instrument.UKULELE }
-        ?: chord.positions.firstOrNull()
+    val colorScheme = MaterialTheme.colorScheme
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "🎸 Ukulele",
             style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.primary,
+            color = colorScheme.primary,
             modifier = Modifier.padding(bottom = 12.dp)
         )
+
+        // ⚠️ ВНИМАНИЕ: Данные для укулеле некорректные (см. ERR-010)
+        // pianochord.org содержит только пианино, данные сгенерированы с ошибками
 
         if (position != null) {
             ChordDiagramCanvas(
@@ -72,6 +75,20 @@ fun UkuleleChordDiagram(chord: Chord) {
                     .fillMaxWidth()
                     .height(220.dp)
             )
+        } else {
+            // No ukulele position available
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Not available for ukulele",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = colorScheme.onSurfaceVariant
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(8.dp))
