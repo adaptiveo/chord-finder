@@ -25,9 +25,10 @@ fun GuitarChordDiagram(chord: Chord) {
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = "Guitar: ${chord.name}",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
+            text = "🎸 Guitar",
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(bottom = 12.dp)
         )
 
         if (position != null) {
@@ -54,9 +55,10 @@ fun UkuleleChordDiagram(chord: Chord) {
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = "Ukulele: ${chord.name}",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
+            text = "🎸 Ukulele",
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(bottom = 12.dp)
         )
 
         if (position != null) {
@@ -80,20 +82,36 @@ fun UkuleleChordDiagram(chord: Chord) {
 fun PianoChordDiagram(chord: Chord) {
     val position = chord.positions.find { it.instrument == Instrument.PIANO }
         ?: chord.positions.firstOrNull()
+    val colorScheme = MaterialTheme.colorScheme
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = "Piano: ${chord.name}",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
+            text = "🎹 Piano",
+            style = MaterialTheme.typography.titleLarge,
+            color = colorScheme.primary,
+            modifier = Modifier.padding(bottom = 12.dp)
         )
 
         // Display chord notes text (e.g., "C major = C, E, G")
         if (position != null) {
-            val notesText = position.frets
-                .filter { it.fret >= 0 }
-                .sortedBy { it.fret }
-                .joinToString(", ") { getNoteName(it.fret) }
+            val validFrets = position.frets.filter { it.fret >= 0 }
+            val rootSemitone = extractRootSemitone(chord.name)
+            val notesText = if (rootSemitone != null && validFrets.isNotEmpty()) {
+                // Sort notes starting from root note (musical order: root, 3rd, 5th, 7th)
+                val sortedNotes = validFrets
+                    .map { it.fret }
+                    .sortedWith(compareBy {
+                        val normalized = it % 12
+                        val diff = (normalized - rootSemitone + 12) % 12
+                        diff
+                    })
+                    .joinToString(", ") { getNoteName(it) }
+                sortedNotes
+            } else {
+                validFrets
+                    .sortedBy { it.fret }
+                    .joinToString(", ") { getNoteName(it.fret) }
+            }
             if (notesText.isNotEmpty()) {
                 Text(
                     text = "${chord.name} = $notesText",
@@ -123,6 +141,29 @@ private fun getNoteName(semitone: Int): String {
     val normalizedSemitone = semitone % 12
     val octave = semitone / 12
     return "${noteNames[normalizedSemitone]}${octave}"
+}
+
+// Extract root note semitone from chord name (e.g., "F7" -> 5, "C#m" -> 1)
+private fun extractRootSemitone(chordName: String): Int? {
+    val noteMap = mapOf(
+        "C" to 0, "C#" to 1, "Db" to 1,
+        "D" to 2, "D#" to 3, "Eb" to 3,
+        "E" to 4, "Fb" to 4,
+        "F" to 5, "F#" to 6, "Gb" to 6,
+        "G" to 7, "G#" to 8, "Ab" to 8,
+        "A" to 9, "A#" to 10, "Bb" to 10,
+        "B" to 11, "Cb" to 11
+    )
+
+    // Match root note at start of chord name (handles sharps and flats)
+    val match = Regex("^([A-G][#♯b♭]?)").find(chordName)
+    return match?.groupValues?.get(1)?.let { root ->
+        // Normalize sharp/flat symbols
+        val normalizedRoot = root
+            .replace("♯", "#")
+            .replace("♭", "b")
+        noteMap[normalizedRoot]
+    }
 }
 
 @Composable

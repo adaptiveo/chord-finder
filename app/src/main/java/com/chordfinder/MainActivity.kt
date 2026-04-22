@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.chordfinder.data.ChordData
 import com.chordfinder.ui.ChordFinderApp
 import com.chordfinder.ui.theme.ChordFinderTheme
 
@@ -15,6 +16,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // Initialize chord data from JSON
+        ChordData.initialize(this)
+
         setContent {
             ChordFinderTheme {
                 Surface(

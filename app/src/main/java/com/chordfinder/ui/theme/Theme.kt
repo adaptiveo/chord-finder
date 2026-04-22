@@ -15,16 +15,39 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+// Material 3 fallback colors
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    onPrimary = Purple20,
+    primaryContainer = Purple30,
+    onPrimaryContainer = Purple90,
+    secondary = Teal80,
+    onSecondary = Teal20,
+    secondaryContainer = Teal30,
+    onSecondaryContainer = Teal90,
+    tertiary = Pink80,
+    background = DarkBackground,
+    surface = DarkSurface,
+    surfaceVariant = DarkSurfaceVariant,
+    onBackground = LightText,
+    onSurface = LightText
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    onPrimary = White,
+    primaryContainer = Purple90,
+    onPrimaryContainer = Purple10,
+    secondary = Teal40,
+    onSecondary = White,
+    secondaryContainer = Teal90,
+    onSecondaryContainer = Teal10,
+    tertiary = Pink40,
+    background = LightBackground,
+    surface = White,
+    surfaceVariant = LightSurfaceVariant,
+    onBackground = DarkText,
+    onSurface = DarkText
 )
 
 @Composable
@@ -46,13 +69,19 @@ fun ChordFinderTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            // Edge-to-edge with transparent status bar
+            window.statusBarColor = android.graphics.Color.TRANSPARENT
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+            WindowCompat.getInsetsController(window, view).apply {
+                isAppearanceLightStatusBars = !darkTheme
+                isAppearanceLightNavigationBars = !darkTheme
+            }
         }
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
+        typography = Typography,
         content = content
     )
 }
