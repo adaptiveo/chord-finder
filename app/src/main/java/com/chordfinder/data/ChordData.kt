@@ -77,11 +77,11 @@ object ChordData {
 
     fun getNormalizedName(name: String): String {
         return name
-            .replace("m", "M")
+            .replace("m", "M")  // Cm -> CM (matches JSON format for minor chords)
             .uppercase()
             .replace(" ", "")
             .replace("MAJ", "")
-            .replace("MIN", "M")
+            .replace("MIN", "M")  // Also handle MIN variant
             // Handle sus chords using ASCII placeholder to avoid conflict
             .replace("SUS2", "")
             .replace("SUS4", "")
@@ -147,14 +147,14 @@ object ChordData {
 
             val key = when {
                 suffix == "" || suffix == "MAJ" -> root
-                suffix == "M" -> "${root}M"
+                suffix == "M" -> "${root}M"  // Minor chord (Cm -> CM)
                 suffix == "7" || suffix == "9" || suffix == "11" || suffix == "13" -> "${root}7"
                 suffix == "M7" -> "${root}M7"
                 suffix == "MAJ7" -> "${root}MAJ7"
                 suffix == "AUG7" -> "${root}AUG7"
                 suffix == "SUS2" -> "${root}SUS2"
                 suffix == "SUS4" -> "${root}SUS"  // JSON uses GSUS for Gsus4
-                suffix.startsWith("M") && suffix.endsWith("7") -> "${root}M7"
+                suffix.startsWith("M") && suffix.endsWith("7") -> "${root}M7"  // Minor 7
                 suffix == "DIM" -> "${root}DIM"
                 suffix == "DIM7" -> "${root}DIM7"
                 suffix == "AUG" -> "${root}AUG"

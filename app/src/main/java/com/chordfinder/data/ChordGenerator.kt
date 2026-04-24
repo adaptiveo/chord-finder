@@ -16,7 +16,7 @@ object ChordGenerator {
     private val CHORD_FORMULAS = mapOf(
         // Основные трезвучия
         "" to listOf(0, 4, 7),           // Major (C = C, E, G)
-        "M" to listOf(0, 3, 7),          // Minor (Cm = C, Eb, G)
+        "M" to listOf(0, 3, 7),          // Minor (Cm = C, Eb, G) - matches JSON format
         "DIM" to listOf(0, 3, 6),        // Diminished (Cdim = C, Eb, Gb)
         "AUG" to listOf(0, 4, 8),        // Augmented (Caug = C, E, G#)
 

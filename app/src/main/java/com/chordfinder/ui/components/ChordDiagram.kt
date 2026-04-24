@@ -263,7 +263,7 @@ fun ChordDiagramCanvas(
 
         // Draw finger positions
         position.frets.forEach { fret ->
-            val stringIndex = strings - fret.string
+            val stringIndex = fret.string - 1  // 0-indexed, left to right (1 = thickest string on left)
             val x = leftPadding + stringIndex * stringSpacing
             val y = topPadding + (fret.fret - 0.5f) * fretSpacing
 
@@ -305,8 +305,8 @@ fun ChordDiagramCanvas(
 
         // Draw barres
         position.barres.forEach { barre ->
-            val startX = leftPadding + (strings - barre.fromString) * stringSpacing
-            val endX = leftPadding + (strings - barre.toString) * stringSpacing
+            val startX = leftPadding + (barre.fromString - 1) * stringSpacing
+            val endX = leftPadding + (barre.toString - 1) * stringSpacing
             val y = topPadding + (barre.fret - 0.5f) * fretSpacing
 
             drawLine(
