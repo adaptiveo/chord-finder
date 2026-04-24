@@ -143,8 +143,8 @@ object ChordGenerator {
         }
 
         // Попробовать найти позицию с аккордом в открытой позиции или ближе к началу
-        val bestPosition = findBestPosition(stringOptions, chordNotes, stringsCount, maxStretch)
-            ?: findAnyValidPosition(stringOptions, chordNotes, stringsCount, maxStretch)
+        val bestPosition = findBestPosition(stringOptions, chordNotes, stringsCount, maxStretch, tuning)
+            ?: findAnyValidPosition(stringOptions, chordNotes, stringsCount, maxStretch, tuning)
 
         return bestPosition?.let { (frets, barres, fingers) ->
             ChordPosition(
@@ -171,12 +171,13 @@ object ChordGenerator {
         stringOptions: List<List<Pair<Int, Int>>>,
         chordNotes: List<Int>,
         stringsCount: Int,
-        maxStretch: Int
+        maxStretch: Int,
+        tuning: List<Int>
     ): Triple<List<Int>, List<Barre>, List<Int?>>? {
 
         // Пробуем открытую позицию сначала (лад 0-5)
         for (baseFret in 0..5) {
-            val result = tryPositionAtFret(stringOptions, chordNotes, stringsCount, baseFret, maxStretch)
+            val result = tryPositionAtFret(stringOptions, chordNotes, stringsCount, baseFret, maxStretch, tuning)
             if (result != null) return result
         }
         return null
@@ -186,11 +187,12 @@ object ChordGenerator {
         stringOptions: List<List<Pair<Int, Int>>>,
         chordNotes: List<Int>,
         stringsCount: Int,
-        maxStretch: Int
+        maxStretch: Int,
+        tuning: List<Int>
     ): Triple<List<Int>, List<Barre>, List<Int?>>? {
         // Пробуем любую позицию до 12 лада
         for (baseFret in 0..12) {
-            val result = tryPositionAtFret(stringOptions, chordNotes, stringsCount, baseFret, maxStretch)
+            val result = tryPositionAtFret(stringOptions, chordNotes, stringsCount, baseFret, maxStretch, tuning)
             if (result != null) return result
         }
         return null
@@ -204,42 +206,51 @@ object ChordGenerator {
         chordNotes: List<Int>,
         stringsCount: Int,
         baseFret: Int,
-        maxStretch: Int
+        maxStretch: Int,
+        tuning: List<Int>
     ): Triple<List<Int>, List<Barre>, List<Int?>>? {
         val frets = MutableList(stringsCount) { -1 } // -1 = не играется
         val fingers = MutableList<Int?>(stringsCount) { null }
 
-        val playedNotes = mutableSetOf<Int>()
         var minFret = 100
         var maxFret = -1
 
         // Для каждой струны выбрать подходящий лад
         for (stringIndex in 0 until stringsCount) {
+            val openNote = tuning[stringIndex]
+
+            // Фильтруем только ноты аккорда (открытые струны только если входят в аккорд)
             val options = stringOptions[stringIndex].filter { (_, fret) ->
-                fret == 0 || (fret >= baseFret && fret <= baseFret + maxStretch)
+                val note = (openNote + fret) % 12
+                note in chordNotes && (fret == 0 || (fret >= baseFret && fret <= baseFret + maxStretch))
             }
 
-            // Предпочитаем: 1) ноту аккорда на нижнем ладу, 2) открытую струну, 3) любую ноту аккорда
-            val bestOption = options.firstOrNull { (_, fret) ->
-                fret > 0 && (fret in (baseFret..baseFret + maxStretch))
-            } ?: options.firstOrNull { (_, fret) -> fret == 0 }
-            ?: options.firstOrNull()
+            // Выбираем наименьший подходящий лад
+            val bestOption = options.firstOrNull()
 
             if (bestOption != null) {
-                val (s, fret) = bestOption
+                val (_, fret) = bestOption
                 frets[stringIndex] = fret
                 if (fret > 0) {
                     minFret = minOf(minFret, fret)
                     maxFret = maxOf(maxFret, fret)
                 }
+            }
+            // Если нет подходящих опций для струны - оставляем -1 (не играет)
+        }
 
-                // Определяем какая это нота
-                // TODO: вычислить фактическую ноту
+        // Проверяем что все ноты аккорда присутствуют в позиции
+        val playedNoteSet = mutableSetOf<Int>()
+        for ((stringIndex, fret) in frets.withIndex()) {
+            if (fret >= 0) {
+                val openNote = tuning[stringIndex]
+                val note = (openNote + fret) % 12
+                playedNoteSet.add(note)
             }
         }
 
-        // Проверяем что у нас есть все ноты аккорда
-        // TODO: проверить что все ноты chordNotes присутствуют
+        // Должны присутствовать все ноты аккорда
+        if (!chordNotes.all { it in playedNoteSet }) return null
 
         // Если позиция валидна (минимум 3 струны играют для гитары, 4 для укулеле)
         val playedStrings = frets.count { it >= 0 }
