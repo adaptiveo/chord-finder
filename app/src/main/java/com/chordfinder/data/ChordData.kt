@@ -104,11 +104,27 @@ object ChordData {
 
         val normalized = getNormalizedName(name)
 
-        chords[normalized]?.let { return it }
+        var chord = chords[normalized]
+            ?: chords[normalized]?.let { it }
+            ?: findChordByKey(normalized)
 
+        if (chord != null) {
+            // Проверить и сгенерировать недостающие позиции для гитары и укулеле
+            val updatedPositions = generateMissingPositions(chord)
+            if (updatedPositions != chord.positions) {
+                chord = Chord(chord.name, updatedPositions)
+            }
+        }
+
+        return chord
+    }
+
+    /**
+     * Поиск аккорда по различным вариантам ключа
+     */
+    private fun findChordByKey(normalized: String): Chord? {
         // Try full match first
-        val fullMatch = chords.keys.find { it == normalized }
-        if (fullMatch != null) return chords[fullMatch]
+        chords.keys.find { it == normalized }?.let { return chords[it] }
 
         // Handle sus4 chords - JSON uses GSUS instead of GSUS4
         if (normalized.endsWith("SUS4")) {
@@ -158,6 +174,43 @@ object ChordData {
         }
 
         return null
+    }
+
+    /**
+     * Генерировать недостающие или невалидные позиции для гитары и укулеле
+     */
+    private fun generateMissingPositions(chord: Chord): List<ChordPosition> {
+        val positions = chord.positions.toMutableList()
+
+        // Проверить гитару - если нет или все лады = 0, сгенерировать
+        val guitarPos = positions.find { it.instrument == Instrument.GUITAR }
+        val needsGuitar = guitarPos == null || guitarPos.frets.all { it.fret == 0 }
+
+        if (needsGuitar) {
+            positions.removeAll { it.instrument == Instrument.GUITAR }
+            ChordGenerator.generateChordPosition(
+                chord.name,
+                Instrument.GUITAR,
+                ChordGenerator.GUITAR_TUNING,
+                maxFret = 12
+            )?.let { positions.add(it) }
+        }
+
+        // Проверить укулеле - если нет или все лады = 0, сгенерировать
+        val ukulelePos = positions.find { it.instrument == Instrument.UKULELE }
+        val needsUkulele = ukulelePos == null || ukulelePos.frets.all { it.fret == 0 }
+
+        if (needsUkulele) {
+            positions.removeAll { it.instrument == Instrument.UKULELE }
+            ChordGenerator.generateChordPosition(
+                chord.name,
+                Instrument.UKULELE,
+                ChordGenerator.UKULELE_TUNING,
+                maxFret = 12
+            )?.let { positions.add(it) }
+        }
+
+        return positions
     }
 
     /**

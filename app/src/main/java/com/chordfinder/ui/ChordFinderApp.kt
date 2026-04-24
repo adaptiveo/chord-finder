@@ -25,9 +25,8 @@ fun ChordFinderApp() {
     var query by remember { mutableStateOf("") }
     var selectedTab by remember { mutableIntStateOf(1) } // Default to Piano
     var suggestions by remember { mutableStateOf(listOf<String>()) }
-    var showSuggestions by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
     var justSelected by remember { mutableStateOf(false) } // Flag to prevent reopen after selection
-    val tabs = listOf("Guitar", "Piano", "Ukulele")
     val colorScheme = MaterialTheme.colorScheme
 
     // Update suggestions when query changes
@@ -41,9 +40,9 @@ fun ChordFinderApp() {
         if (query.length >= 1) {
             val results = ChordData.searchChords(query, maxResults = 8)
             suggestions = results
-            showSuggestions = results.isNotEmpty()
+            expanded = results.isNotEmpty()
         } else {
-            showSuggestions = false
+            expanded = false
             suggestions = emptyList()
         }
     }
@@ -70,8 +69,6 @@ fun ChordFinderApp() {
         )
 
         // Search field with autocomplete using ExposedDropdownMenuBox
-        var expanded by remember { mutableStateOf(false) }
-
         ExposedDropdownMenuBox(
             expanded = expanded,
             onExpandedChange = { expanded = it },
@@ -81,12 +78,7 @@ fun ChordFinderApp() {
                 value = query,
                 onValueChange = {
                     query = it
-                    if (it.length >= 1) {
-                        suggestions = ChordData.searchChords(it, maxResults = 8)
-                        expanded = suggestions.isNotEmpty()
-                    } else {
-                        expanded = false
-                    }
+                    // LaunchedEffect will handle updating suggestions and expanded state
                 },
                 label = { Text("Enter chord") },
                 placeholder = { Text("e.g. C, Am, G7, Fsus2") },
@@ -153,30 +145,19 @@ fun ChordFinderApp() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Tab row with icons
-        PrimaryTabRow(
-            selectedTabIndex = selectedTab,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            tabs.forEachIndexed { index, title ->
-                Tab(
-                    selected = selectedTab == index,
-                    onClick = { selectedTab = index },
-                    text = {
-                        Text(
-                            text = title,
-                            style = MaterialTheme.typography.labelLarge
-                        )
-                    }
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Content area
+        // Content area - get chord first to determine tab availability
         val chordName = query.trim().uppercase()
         val chord = ChordData.getChord(chordName)
+
+        // Tab row with instrument availability indicators
+        InstrumentTabs(
+            selectedTab = selectedTab,
+            onTabSelected = { selectedTab = it },
+            chord = chord,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         if (chord != null) {
             // Chord found - display in Card
@@ -210,12 +191,12 @@ fun ChordFinderApp() {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Instrument diagram
-                    when (selectedTab) {
-                        0 -> GuitarChordDiagram(chord)
-                        1 -> PianoChordDiagram(chord)
-                        2 -> UkuleleChordDiagram(chord)
-                    }
+                    // Instrument diagram based on selected tab
+                    InstrumentChordDiagram(
+                        chord = chord,
+                        selectedInstrument = selectedTab,
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
         } else {
