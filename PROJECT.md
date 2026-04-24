@@ -1,8 +1,9 @@
 # PROJECT - Chord Finder
 
 **Статус:** [x] В разработке / [ ] В продакшене / [ ] Заморожен  
-**Последнее обновление:** 2026-04-22 (добавлено автодополнение)  
+**Последнее обновление:** 2026-04-24 (загружено на GitHub)  
 **Ответственный:** @user  
+**GitHub:** https://github.com/adaptiveo/chord-finder  
 
 ## Описание
 
@@ -89,6 +90,15 @@ chord-finder/
 | `./gradlew clean` | Очистка сборки |
 | `./gradlew build` | Полная сборка проекта |
 
+## Последние изменения
+
+| Дата | Событие |
+|------|---------|
+| 2026-04-24 | Проект загружен на GitHub (публичный репозиторий) |
+| 2026-04-22 | Добавлено автодополнение с dropdown (BACK-001) |
+| 2026-04-22 | Исправлен баг dropdown (ERR-009) |
+| 2026-04-22 | Реализована генерация аппликатур для гитары/укулеле |
+
 ## Функциональность
 
 ### Основные фичи
@@ -105,12 +115,10 @@ chord-finder/
 
 ## Архитектурные решения (ADR)
 
-Список принятых архитектурных решений:
-
 | ADR | Дата | Тема | Статус |
 |-----|------|------|--------|
-| [ADR-001](adr/ADR-001-piano-chord-display.md) | 2026-04-22 | Piano Chord Display | ✅ Принято |
-| [ADR-002](adr/ADR-002-autocomplete-dropdown.md) | 2026-04-22 | Autocomplete Dropdown | ✅ Принято |
+| [ADR-001](docs/adr/ADR-001-material3-dynamic-colors.md) | 2026-04-22 | Material 3 Dynamic Colors | ✅ Принято |
+| [ADR-002](docs/adr/ADR-002-autocomplete-dropdown.md) | 2026-04-22 | Autocomplete Dropdown | ✅ Принято |
 
 > Каждое значимое изменение (не багфикс) оформляется как ADR в папке `adr/`
 
@@ -122,13 +130,24 @@ chord-finder/
 | [ERR-009](ERRORLOG.md) | 2026-04-22 | Dropdown открывался повторно после выбора | ✅ Исправлено |
 | [ERR-008](ERRORLOG.md) | 2026-04-22 | Gadd11 показывался как Gadd9 | ✅ Исправлено |
 | [ERR-007](ERRORLOG.md) | 2026-04-22 | MethodTooLargeException при добавлении аккордов | ✅ Исправлено |
+| [ERR-006](ERRORLOG.md) | 2026-04-22 | SUS2 парсился как SUS2SUS (двойная замена) | ✅ Исправлено |
+
+## Активные задачи (BACKLOG)
+
+| ID | Приоритет | Описание | Статус |
+|----|-----------|----------|--------|
+| [BACK-018](docs/BACKLOG.md) | P2 | Корректные данные аппликатур для гитары и укулеле | 📋 В плане |
+| [BACK-017](docs/BACKLOG.md) | P2 | Отключение табов для несуществующих аккордов | 📋 В плане |
+| [BACK-016](docs/BACKLOG.md) | P1 | Автоопределение раскладки клавиатуры (Cyrillic → Latin) | 📋 В плане |
+| [BACK-002](docs/BACKLOG.md) | P1 | История и избранное | 📋 В плане |
 
 > Полный список ошибок в файле [ERRORLOG.md](ERRORLOG.md)
 
 ## Ссылки
 
-- Репозиторий: `C:\gvv\AI\projects\chord-finder`
-- Документация: SPEC.md
+- Локальный репозиторий: `C:\gvv\AI\projects\chord-finder`
+- GitHub: https://github.com/adaptiveo/chord-finder
+- Документация: [SPEC.md](SPEC.md), [PROJECT.md](docs/PROJECT.md)
 
 ## Контакты
 
