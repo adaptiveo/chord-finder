@@ -1,11 +1,17 @@
 package com.chordfinder.data
 
 import com.chordfinder.data.guitar.GuitarChords
+import com.chordfinder.data.ukulele.UkuleleChords
+import com.chordfinder.data.piano.PianoChords
 
 /**
  * Генератор аккордов на основе музыкальной теории.
- * Создаёт аппликатуры для гитары и укулеле если они отсутствуют в JSON.
- * Для гитары сначала проверяются канонические позиции (GuitarChords.kt).
+ * Создаёт аппликатуры для всех трёх инструментов.
+ * Порядок генерации:
+ * 1. Для гитары: проверка канонической позиции (GuitarChords.kt)
+ * 2. Для укулеле: проверка канонической позиции (UkuleleChords.kt)
+ * 3. Для пианино: проверка канонической позиции (PianoChords.kt)
+ * 4. Fallback: алгоритмическая генерация на основе теории
  */
 object ChordGenerator {
 
@@ -178,7 +184,9 @@ object ChordGenerator {
      *
      * Порядок генерации:
      * 1. Для гитары: проверка канонической позиции (GuitarChords.kt)
-     * 2. Алгоритмическая генерация на основе теории
+     * 2. Для укулеле: проверка канонической позиции (UkuleleChords.kt)
+     * 3. Для пианино: проверка канонической позиции (PianoChords.kt)
+     * 4. Fallback: алгоритмическая генерация на основе теории
      */
     fun generateChordPosition(
         chordName: String,
@@ -188,10 +196,24 @@ object ChordGenerator {
         maxStretch: Int = 4 // Максимальное растяжение пальцев
     ): ChordPosition? {
 
-        // Для гитары сначала проверяем каноническую позицию
+        // ===== 1. Для гитары: проверка канонической позиции =====
         if (instrument == Instrument.GUITAR) {
             GuitarChords.getCanonicalPosition(chordName)?.let { canonicalFrets ->
                 return GuitarChords.toChordPosition(canonicalFrets, chordName)
+            }
+        }
+
+        // ===== 2. Для укулеле: проверка канонической позиции =====
+        if (instrument == Instrument.UKULELE) {
+            UkuleleChords.getCanonicalPosition(chordName)?.let { ukulelePos ->
+                return UkuleleChords.toChordPosition(ukulelePos, chordName)
+            }
+        }
+
+        // ===== 3. Для пианино: проверка канонической позиции =====
+        if (instrument == Instrument.PIANO) {
+            PianoChords.getCanonicalPosition(chordName)?.let { pianoPos ->
+                return PianoChords.toChordPosition(pianoPos, chordName)
             }
         }
 
@@ -493,30 +515,35 @@ object ChordGenerator {
     fun generateMissingPositions(chord: Chord): List<ChordPosition> {
         val positions = chord.positions.toMutableList()
 
-        // Проверить и сгенерировать для гитары
+        // ===== Гитара =====
         val hasGuitar = positions.any { it.instrument == Instrument.GUITAR }
         val hasValidGuitar = hasGuitar && positions.find { it.instrument == Instrument.GUITAR }?.frets?.all { it.fret == 0 } == false
 
         if (!hasValidGuitar) {
-            // Удалить существующую невалидную позицию гитары
             positions.removeAll { it.instrument == Instrument.GUITAR }
-
-            // Сгенерировать новую
             generateChordPosition(chord.name, Instrument.GUITAR, GUITAR_TUNING)?.let {
                 positions.add(it)
             }
         }
 
-        // Проверить и сгенерировать для укулеле
+        // ===== Укулеле =====
         val hasUkulele = positions.any { it.instrument == Instrument.UKULELE }
         val hasValidUkulele = hasUkulele && positions.find { it.instrument == Instrument.UKULELE }?.frets?.all { it.fret == 0 } == false
 
         if (!hasValidUkulele) {
-            // Удалить существующую невалидную позицию укулеле
             positions.removeAll { it.instrument == Instrument.UKULELE }
-
-            // Сгенерировать новую
             generateChordPosition(chord.name, Instrument.UKULELE, UKULELE_TUNING)?.let {
+                positions.add(it)
+            }
+        }
+
+        // ===== Пианино =====
+        val hasPiano = positions.any { it.instrument == Instrument.PIANO }
+        val hasValidPiano = hasPiano && positions.find { it.instrument == Instrument.PIANO }?.frets?.isNotEmpty() == true
+
+        if (!hasValidPiano) {
+            positions.removeAll { it.instrument == Instrument.PIANO }
+            generateChordPosition(chord.name, Instrument.PIANO, listOf(0))?.let {
                 positions.add(it)
             }
         }

@@ -1139,4 +1139,228 @@ class ChordGeneratorTest {
         assertEquals(1, result!!.first) // C# = 1 полутон
         assertEquals("m7", result.second)
     }
+
+    // ===== Тесты для укулеле (канонические позиции) =====
+
+    @Test
+    fun `ukulele canonical - C major (0003)`() {
+        val position = ChordGenerator.generateChordPosition("C", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 0, 0, 3), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - G major (0232)`() {
+        val position = ChordGenerator.generateChordPosition("G", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 2, 3, 2), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - D major (2220)`() {
+        val position = ChordGenerator.generateChordPosition("D", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(2, 2, 2, 0), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - C7 (0001)`() {
+        val position = ChordGenerator.generateChordPosition("C7", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 0, 0, 1), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - G7 (0212)`() {
+        val position = ChordGenerator.generateChordPosition("G7", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 2, 1, 2), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - A7 (0100)`() {
+        val position = ChordGenerator.generateChordPosition("A7", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 1, 0, 0), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - Am (2000)`() {
+        val position = ChordGenerator.generateChordPosition("Am", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(2, 0, 0, 0), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - Em (0402)`() {
+        val position = ChordGenerator.generateChordPosition("Em", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 4, 0, 2), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - F (2010)`() {
+        val position = ChordGenerator.generateChordPosition("F", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(2, 0, 1, 0), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - Dm (2210)`() {
+        val position = ChordGenerator.generateChordPosition("Dm", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(2, 2, 1, 0), frets)
+    }
+
+    // ===== Тесты для пианино (канонические позиции) =====
+
+    @Test
+    fun `piano canonical - C major (0,4,7 fingers 1,3,5)`() {
+        val position = ChordGenerator.generateChordPosition("C", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 4, 7), notes) // C, E, G
+    }
+
+    @Test
+    fun `piano canonical - Cm (0,3,7)`() {
+        val position = ChordGenerator.generateChordPosition("Cm", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 3, 7), notes) // C, Eb, G
+    }
+
+    @Test
+    fun `piano canonical - C7 (0,4,7,10)`() {
+        val position = ChordGenerator.generateChordPosition("C7", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 4, 7, 10), notes) // C, E, G, Bb
+    }
+
+    @Test
+    fun `piano canonical - CM7 (0,4,7,11)`() {
+        val position = ChordGenerator.generateChordPosition("CM7", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 4, 7, 11), notes) // C, E, G, B
+    }
+
+    @Test
+    fun `piano canonical - D major (2,6,9)`() {
+        val position = ChordGenerator.generateChordPosition("D", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(2, 6, 9), notes) // D, F#, A
+    }
+
+    @Test
+    fun `piano canonical - E major (4,8,11)`() {
+        val position = ChordGenerator.generateChordPosition("E", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(4, 8, 11), notes) // E, G#, B
+    }
+
+    @Test
+    fun `piano canonical - F major (5,9,0)`() {
+        val position = ChordGenerator.generateChordPosition("F", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(5, 9, 0), notes) // F, A, C
+    }
+
+    @Test
+    fun `piano canonical - G major (7,11,2)`() {
+        val position = ChordGenerator.generateChordPosition("G", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(7, 11, 2), notes) // G, B, D
+    }
+
+    @Test
+    fun `piano canonical - A major (9,1,4)`() {
+        val position = ChordGenerator.generateChordPosition("A", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(9, 1, 4), notes) // A, C#, E
+    }
+
+    @Test
+    fun `piano canonical - Am (9,0,4)`() {
+        val position = ChordGenerator.generateChordPosition("Am", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(9, 0, 4), notes) // A, C, E
+    }
+
+    // ===== Тесты для альтерированных аккордов на пианино =====
+
+    @Test
+    fun `piano canonical - C7#5 (0,4,8,10)`() {
+        val position = ChordGenerator.generateChordPosition("C7#5", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 4, 8, 10), notes) // C, E, G#, Bb
+    }
+
+    @Test
+    fun `piano canonical - C7b5 (0,4,6,10)`() {
+        val position = ChordGenerator.generateChordPosition("C7b5", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 4, 6, 10), notes) // C, E, Gb, Bb
+    }
+
+    @Test
+    fun `piano canonical - Cm7b5 (0,3,6,10)`() {
+        val position = ChordGenerator.generateChordPosition("Cm7b5", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 3, 6, 10), notes) // C, Eb, Gb, Bb
+    }
+
+    @Test
+    fun `piano canonical - CM7#5 (0,4,8,11)`() {
+        val position = ChordGenerator.generateChordPosition("CM7#5", Instrument.PIANO, listOf(0))
+        assertNotNull(position)
+        val notes = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 4, 8, 11), notes) // C, E, G#, B
+    }
+
+    // ===== Тесты для диезных/бемольных аккордов на укулеле =====
+
+    @Test
+    fun `ukulele canonical - C# major (1114)`() {
+        val position = ChordGenerator.generateChordPosition("C#", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(1, 1, 1, 4), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - D# major (3331)`() {
+        val position = ChordGenerator.generateChordPosition("D#", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(3, 3, 3, 1), frets)
+    }
+
+    @Test
+    fun `ukulele canonical - F# major (3121)`() {
+        val position = ChordGenerator.generateChordPosition("F#", Instrument.UKULELE, UKULELE_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(3, 1, 2, 1), frets)
+    }
 }

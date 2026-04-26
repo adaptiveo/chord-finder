@@ -459,11 +459,14 @@ fun PianoKeyboard(
         }
 
         position.frets.forEach { fret ->
-            if (fret.fret < 0 || fret.string <= 0) return@forEach
+            if (fret.fret < 0) return@forEach
 
             val noteOffset = fret.fret % 12
             val octave = fret.fret / 12
-            val fingerNumber = fret.string // Using string field for finger number
+            // Исправлено: использовать fret.finger или поиск в position.fingers
+            val fingerNumber = fret.finger
+                ?: position.fingers.find { it.string == fret.string && it.fret == fret.fret }?.fingerNumber
+                ?: 1
 
             // White keys - draw finger number in center of highlighted area
             val whitePosIndex = whiteKeyNoteOffsets.indexOf(noteOffset)

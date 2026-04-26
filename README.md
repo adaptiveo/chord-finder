@@ -33,14 +33,20 @@ APK файлы:
 ```
 app/src/main/java/com/chordfinder/
 ├── data/
-│   ├── Chord.kt          # Модели данных
-│   ├── ChordData.kt      # Загрузка JSON, нормализация названий
-│   └── ChordGenerator.kt # Генерация аппликатур для гитары/укулеле
+│   ├── Chord.kt                    # Модели данных (Chord, ChordPosition, Fret, Barre, Finger)
+│   ├── ChordData.kt                # Загрузка JSON, нормализация названий, fallback на генератор
+│   ├── ChordGenerator.kt           # Генерация аппликатур для всех инструментов
+│   ├── guitar/
+│   │   └── GuitarChords.kt         # Канонические позиции для гитары (60+ аккордов)
+│   ├── ukulele/
+│   │   └── UkuleleChords.kt        # Канонические позиции для укулеле (80+ аккордов)
+│   └── piano/
+│       └── PianoChords.kt          # Канонические позиции для пианино (ноты + пальцы)
 ├── ui/
-│   ├── ChordFinderApp.kt # Главный экран с ViewModel
+│   ├── ChordFinderApp.kt           # Главный экран с ViewModel
 │   ├── components/
-│   │   ├── ChordDiagram.kt    # Отрисовка диаграмм
-│   │   └── InstrumentTabs.kt  # Табы инструментов
+│   │   ├── ChordDiagram.kt         # Отрисовка диаграмм (гитара, укулеле, пианино)
+│   │   └── InstrumentTabs.kt       # Табы инструментов
 │   └── theme/
 └── MainActivity.kt
 ```
