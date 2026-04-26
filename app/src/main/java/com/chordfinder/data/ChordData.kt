@@ -75,13 +75,32 @@ object ChordData {
         chords = tempChords
     }
 
+    /**
+     * Нормализация названия аккорда для поиска в JSON
+     *
+     * Порядок важен: сначала обрабатываем сложные суффиксы (#5, b5, +5, -5),
+     * потом делаем общую замену # и b
+     */
     fun getNormalizedName(name: String): String {
-        return name
+        var result = name
             .replace("m", "M")  // Cm -> CM (matches JSON format for minor chords)
             .uppercase()
             .replace(" ", "")
             .replace("MAJ", "")
             .replace("MIN", "M")  // Also handle MIN variant
+
+        // ===== ВАЖНО: обрабатываем суффиксы с # и b ДО общей замены =====
+        // Иначе #5 превратится в S5 и не найдётся в JSON
+        result = result
+            // Альтерированные квинты с септаккордом
+            .replace("7#5", "7S5")    // D7#5 -> D7S5
+            .replace("7+5", "7P5")    // D7+5 -> D7P5 (+ -> P для plus)
+            .replace("7B5", "7B5")    // D7b5 -> D7B5 (b уже стала B после uppercase)
+            .replace("7-5", "7M5")    // D7-5 -> D7M5 (- -> M для minus)
+            // Альтерированные квинты без септаккорда
+            .replace("#5", "S5")      // C#5 -> CS5
+            .replace("+5", "P5")      // C+5 -> CP5
+            .replace("-5", "M5")      // C-5 -> CM5
             // Handle sus chords using ASCII placeholder to avoid conflict
             .replace("SUS2", "")
             .replace("SUS4", "")
@@ -92,15 +111,21 @@ object ChordData {
             .replace("ADD11", "")
             .replace("", "ADD2")
             .replace("", "ADD11")
+            // Теперь безопасно заменяем # и b в нотах (не в суффиксах)
             .replace("b", "B")
             .replace("#", "S")
             .replace("♯", "S")
             .replace("", "SUS2")
             .replace("", "SUS4")
+
+        return result
     }
 
     fun getChord(name: String): Chord? {
-        if (!::chords.isInitialized) return null
+        if (!::chords.isInitialized) {
+            // Если JSON не загружен, генерируем аккорд через ChordGenerator
+            return generateChordFromGenerator(name)
+        }
 
         val normalized = getNormalizedName(name)
 
@@ -114,9 +139,49 @@ object ChordData {
             if (updatedPositions != chord.positions) {
                 chord = Chord(chord.name, updatedPositions)
             }
+        } else {
+            // ===== FALLBACK: если аккорд не найден в JSON, генерируем через ChordGenerator =====
+            return generateChordFromGenerator(name)
         }
 
         return chord
+    }
+
+    /**
+     * Сгенерировать аккорд через ChordGenerator (fallback для аккордов, отсутствующих в JSON)
+     */
+    private fun generateChordFromGenerator(name: String): Chord? {
+        val positions = mutableListOf<ChordPosition>()
+
+        // Генерируем для гитары
+        ChordGenerator.generateChordPosition(
+            name,
+            com.chordfinder.data.Instrument.GUITAR,
+            ChordGenerator.GUITAR_TUNING,
+            maxFret = 12
+        )?.let { positions.add(it) }
+
+        // Генерируем для укулеле
+        ChordGenerator.generateChordPosition(
+            name,
+            com.chordfinder.data.Instrument.UKULELE,
+            ChordGenerator.UKULELE_TUNING,
+            maxFret = 12
+        )?.let { positions.add(it) }
+
+        // Генерируем для пианино (базовые ноты аккорда)
+        ChordGenerator.generateChordPosition(
+            name,
+            com.chordfinder.data.Instrument.PIANO,
+            listOf(0), // Dummy tuning for piano
+            maxFret = 24
+        )?.let { positions.add(it) }
+
+        return if (positions.isNotEmpty()) {
+            Chord(name, positions)
+        } else {
+            null
+        }
     }
 
     /**
