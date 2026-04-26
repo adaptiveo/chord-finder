@@ -1,8 +1,11 @@
 package com.chordfinder.data
 
+import com.chordfinder.data.guitar.GuitarChords
+
 /**
  * Генератор аккордов на основе музыкальной теории.
  * Создаёт аппликатуры для гитары и укулеле если они отсутствуют в JSON.
+ * Для гитары сначала проверяются канонические позиции (GuitarChords.kt).
  */
 object ChordGenerator {
 
@@ -118,6 +121,10 @@ object ChordGenerator {
     /**
      * Генерировать позицию аккорда для инструмента
      * @return ChordPosition или null если невозможно построить
+     *
+     * Порядок генерации:
+     * 1. Для гитары: проверка канонической позиции (GuitarChords.kt)
+     * 2. Алгоритмическая генерация на основе теории
      */
     fun generateChordPosition(
         chordName: String,
@@ -126,6 +133,14 @@ object ChordGenerator {
         maxFret: Int = 12,
         maxStretch: Int = 4 // Максимальное растяжение пальцев
     ): ChordPosition? {
+
+        // Для гитары сначала проверяем каноническую позицию
+        if (instrument == Instrument.GUITAR) {
+            GuitarChords.getCanonicalPosition(chordName)?.let { canonicalFrets ->
+                return GuitarChords.toChordPosition(canonicalFrets, chordName)
+            }
+        }
+
         val (rootNote, suffix) = parseChordName(chordName) ?: return null
         val chordNotes = getChordNotes(rootNote, suffix)
 
