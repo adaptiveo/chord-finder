@@ -843,4 +843,300 @@ class ChordGeneratorTest {
         assertTrue(playedNotes.contains(9))  // A
         assertTrue(playedNotes.contains(1))  // C
     }
+
+    // ===== Тесты для диезных/бемольных аккордов =====
+
+    @Test
+    fun `guitar chords - C# мажор (x46644)`() {
+        val position = ChordGenerator.generateChordPosition("C#", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 4, 6, 6, 4, 4), frets)
+    }
+
+    @Test
+    fun `guitar chords - D# мажор (xx1343)`() {
+        val position = ChordGenerator.generateChordPosition("D#", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, -1, 1, 3, 4, 3), frets)
+    }
+
+    @Test
+    fun `guitar chords - F# мажор (244322)`() {
+        val position = ChordGenerator.generateChordPosition("F#", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(2, 4, 4, 3, 2, 2), frets)
+    }
+
+    @Test
+    fun `guitar chords - G# мажор (xx6888)`() {
+        val position = ChordGenerator.generateChordPosition("G#", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, -1, 6, 8, 8, 8), frets)
+    }
+
+    @Test
+    fun `guitar chords - A# мажор (x13331)`() {
+        val position = ChordGenerator.generateChordPosition("A#", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 1, 3, 3, 3, 1), frets)
+    }
+
+    @Test
+    fun `guitar chords - C#m (x46654)`() {
+        val position = ChordGenerator.generateChordPosition("C#m", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 4, 6, 6, 5, 4), frets)
+    }
+
+    @Test
+    fun `guitar chords - D#m (xx1342)`() {
+        val position = ChordGenerator.generateChordPosition("D#m", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, -1, 1, 3, 4, 2), frets)
+    }
+
+    @Test
+    fun `guitar chords - F#m (244322)`() {
+        val position = ChordGenerator.generateChordPosition("F#m", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(2, 4, 4, 3, 2, 2), frets)
+    }
+
+    // ===== Тесты для 7#5 (dominant 7th augmented 5th) =====
+
+    @Test
+    fun `guitar chords - D7#5 (xx0222)`() {
+        val position = ChordGenerator.generateChordPosition("D7#5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, -1, 0, 2, 2, 2), frets)
+
+        // Проверяем ноты: D(2), F#(6), A#(10), C(0)
+        val playedNotes = position!!.frets
+            .filter { it.fret >= 0 }
+            .map { fret -> (GUITAR_TUNING[fret.string - 1] + fret.fret) % 12 }
+            .toSet()
+        assertTrue(playedNotes.contains(2))  // D
+        assertTrue(playedNotes.contains(6))  // F#
+        assertTrue(playedNotes.contains(10)) // A# (G#)
+        assertTrue(playedNotes.contains(0))  // C
+    }
+
+    @Test
+    fun `guitar chords - C7#5 (x32320)`() {
+        val position = ChordGenerator.generateChordPosition("C7#5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 3, 2, 3, 2, 0), frets)
+    }
+
+    @Test
+    fun `guitar chords - E7#5 (020120)`() {
+        val position = ChordGenerator.generateChordPosition("E7#5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 2, 0, 1, 2, 0), frets)
+    }
+
+    @Test
+    fun `guitar chords - G7#5 (320123)`() {
+        val position = ChordGenerator.generateChordPosition("G7#5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(3, 2, 0, 1, 2, 3), frets)
+    }
+
+    @Test
+    fun `guitar chords - A7#5 (x02120)`() {
+        val position = ChordGenerator.generateChordPosition("A7#5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 0, 2, 1, 2, 0), frets)
+    }
+
+    // ===== Тесты для 7b5 (dominant 7th diminished 5th) =====
+
+    @Test
+    fun `guitar chords - D7b5 (xx0212)`() {
+        val position = ChordGenerator.generateChordPosition("D7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, -1, 0, 2, 1, 2), frets)
+
+        // Проверяем ноты: D(2), F#(6), Ab(8), C(0)
+        val playedNotes = position!!.frets
+            .filter { it.fret >= 0 }
+            .map { fret -> (GUITAR_TUNING[fret.string - 1] + fret.fret) % 12 }
+            .toSet()
+        assertTrue(playedNotes.contains(2))  // D
+        assertTrue(playedNotes.contains(6))  // F#
+        assertTrue(playedNotes.contains(8))  // Ab
+        assertTrue(playedNotes.contains(0))  // C
+    }
+
+    @Test
+    fun `guitar chords - C7b5 (x3231x)`() {
+        val position = ChordGenerator.generateChordPosition("C7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 3, 2, 3, 1, -1), frets)
+    }
+
+    @Test
+    fun `guitar chords - E7b5 (02010x)`() {
+        val position = ChordGenerator.generateChordPosition("E7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 2, 0, 1, 0, -1), frets)
+    }
+
+    @Test
+    fun `guitar chords - G7b5 (32010x)`() {
+        val position = ChordGenerator.generateChordPosition("G7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(3, 2, 0, 1, 0, -1), frets)
+    }
+
+    @Test
+    fun `guitar chords - A7b5 (x02010)`() {
+        val position = ChordGenerator.generateChordPosition("A7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 0, 2, 0, 1, 0), frets)
+    }
+
+    // ===== Тесты для минорных септаккордов (m7) =====
+
+    @Test
+    fun `guitar chords - Cm7 (x31310)`() {
+        val position = ChordGenerator.generateChordPosition("Cm7", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 3, 1, 3, 1, 0), frets)
+    }
+
+    @Test
+    fun `guitar chords - Dm7 (xx0211)`() {
+        val position = ChordGenerator.generateChordPosition("Dm7", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, -1, 0, 2, 1, 1), frets)
+    }
+
+    @Test
+    fun `guitar chords - Em7 (020000)`() {
+        val position = ChordGenerator.generateChordPosition("Em7", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 2, 0, 0, 0, 0), frets)
+    }
+
+    @Test
+    fun `guitar chords - Gm7 (353533)`() {
+        val position = ChordGenerator.generateChordPosition("Gm7", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(3, 5, 3, 5, 3, 3), frets)
+    }
+
+    @Test
+    fun `guitar chords - Am7 (x02010)`() {
+        val position = ChordGenerator.generateChordPosition("Am7", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 0, 2, 0, 1, 0), frets)
+    }
+
+    // ===== Тесты для half-diminished (m7b5) =====
+
+    @Test
+    fun `guitar chords - Cm7b5 (x3131x)`() {
+        val position = ChordGenerator.generateChordPosition("Cm7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 3, 1, 3, 1, -1), frets)
+    }
+
+    @Test
+    fun `guitar chords - Dm7b5 (xx0111)`() {
+        val position = ChordGenerator.generateChordPosition("Dm7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, -1, 0, 1, 1, 1), frets)
+    }
+
+    @Test
+    fun `guitar chords - Em7b5 (01000x)`() {
+        val position = ChordGenerator.generateChordPosition("Em7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(0, 1, 0, 0, 0, -1), frets)
+    }
+
+    @Test
+    fun `guitar chords - Am7b5 (x0101x)`() {
+        val position = ChordGenerator.generateChordPosition("Am7b5", Instrument.GUITAR, GUITAR_TUNING)
+        assertNotNull(position)
+        val frets = position!!.frets.map { it.fret }
+        assertEquals(listOf(-1, 0, 1, 0, 1, -1), frets)
+    }
+
+    // ===== Тесты парсинга для 7#5 и 7b5 =====
+
+    @Test
+    fun `parseChordName - D7#5`() {
+        val result = ChordGenerator.parseChordName("D7#5")
+        assertNotNull(result)
+        assertEquals(2, result!!.first) // D = 2 полутона
+        assertEquals("7#5", result.second)
+    }
+
+    @Test
+    fun `parseChordName - D7b5`() {
+        val result = ChordGenerator.parseChordName("D7b5")
+        assertNotNull(result)
+        assertEquals(2, result!!.first) // D = 2 полутона
+        assertTrue(result.second in listOf("7B5", "7b5")) // B = b после нормализации
+    }
+
+    @Test
+    fun `parseChordName - C# мажор`() {
+        val result = ChordGenerator.parseChordName("C#")
+        assertNotNull(result)
+        assertEquals(1, result!!.first) // C# = 1 полутон
+        assertEquals("", result.second) // пустой суффикс = мажор
+    }
+
+    @Test
+    fun `parseChordName - C#m минор`() {
+        val result = ChordGenerator.parseChordName("C#m")
+        assertNotNull(result)
+        assertEquals(1, result!!.first) // C# = 1 полутон
+        assertEquals("M", result.second) // M = minor
+    }
+
+    @Test
+    fun `parseChordName - C#7 септаккорд`() {
+        val result = ChordGenerator.parseChordName("C#7")
+        assertNotNull(result)
+        assertEquals(1, result!!.first) // C# = 1 полутон
+        assertEquals("7", result.second)
+    }
+
+    @Test
+    fun `parseChordName - C#m7 минорный септаккорд`() {
+        val result = ChordGenerator.parseChordName("C#m7")
+        assertNotNull(result)
+        assertEquals(1, result!!.first) // C# = 1 полутон
+        assertEquals("m7", result.second)
+    }
 }

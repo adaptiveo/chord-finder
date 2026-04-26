@@ -45,6 +45,33 @@ object ChordGenerator {
         "5" to listOf(0, 7),             // Power chord (C5 = C, G)
         "7NO3" to listOf(0, 7, 10),      // 7no3 (C7no3 = C, G, Bb - без трети)
         "7NO5" to listOf(0, 4, 10),      // 7no5 (C7no5 = C, E, Bb - без квинты)
+
+        // ===== Альтерированные квинты =====
+        // 7#5 / 7+5 — dominant 7th augmented 5th (C7#5 = C, E, G#, Bb)
+        "7#5" to listOf(0, 4, 8, 10),
+        "7+5" to listOf(0, 4, 8, 10),    // alias для 7#5
+
+        // 7b5 / 7-5 — dominant 7th diminished 5th (C7b5 = C, E, Gb, Bb)
+        "7B5" to listOf(0, 4, 6, 10),    // B = b после нормализации в ChordData
+        "7-5" to listOf(0, 4, 6, 10),    // alias для 7b5
+
+        // Мажорный септаккорд с альтерированной квинтой
+        "M7#5" to listOf(0, 4, 8, 11),   // Major 7 #5 (CM7#5 = C, E, G#, B)
+        "M7+5" to listOf(0, 4, 8, 11),   // alias для M7#5
+        "M7B5" to listOf(0, 4, 6, 11),   // Major 7 b5 (CM7b5 = C, E, Gb, B)
+        "M7-5" to listOf(0, 4, 6, 11),   // alias для M7b5
+
+        // Минорный септаккорд (m7)
+        "m7" to listOf(0, 3, 7, 10),     // Minor 7 (Cm7 = C, Eb, G, Bb)
+
+        // Half-diminished (m7b5)
+        "m7B5" to listOf(0, 3, 6, 10),   // Half-diminished 7 (Cm7b5 = C, Eb, Gb, Bb)
+
+        // Трезвучия с альтерированной квинтой
+        "#5" to listOf(0, 4, 8),         // Augmented triad (альтернатива AUG)
+        "+5" to listOf(0, 4, 8),         // alias для #5
+        "B5" to listOf(0, 4, 6),         // Diminished 5th triad (b5 после нормализации)
+        "-5" to listOf(0, 4, 6),         // alias для b5
     )
 
     /**
@@ -52,6 +79,9 @@ object ChordGenerator {
      * @return Pair(базовая нота в полутонах, суффикс аккорда)
      */
     fun parseChordName(name: String): Pair<Int, String>? {
+        // Сохраняем информацию о миноре ДО uppercase
+        val hasMinor = name.contains("m", ignoreCase = true) && !name.contains("M7", ignoreCase = true) && !name.contains("MAJ", ignoreCase = true)
+
         val normalized = name.uppercase()
             .replace("MAJOR", "")
             .replace("MINOR", "M")
@@ -65,15 +95,40 @@ object ChordGenerator {
         val noteLetter = match.groupValues[1]
         val sharp = match.groupValues[2]
         val flat = match.groupValues[3]
-        val suffix = match.groupValues[4]
-            .replace("SUS2", "SUS2")
-            .replace("SUS4", "SUS4")
-            .replace("SUS", "SUS4") // По умолчанию sus = sus4
-            .replace("MAJ7", "M7")
-            .replace("MAJOR7", "M7")
-            .replace("ADD9", "ADD9")
-            .replace("ADD", "ADD9")
-            .replace("B5", "MAJ7S5") // Специальный случай
+        var suffix = match.groupValues[4]
+
+        // Обработка минорных септаккордов (m7)
+        // Если исходный аккорд был минорным и суффикс = "7", то это m7
+        if (hasMinor && suffix == "7") {
+            suffix = "m7"
+        } else if (hasMinor && suffix.isEmpty()) {
+            // Просто минорный аккорд
+            suffix = "M"
+        } else {
+            // Нормализация для не-минорных аккордов
+            suffix = suffix
+                // Sus и Add
+                .replace("SUS2", "SUS2")
+                .replace("SUS4", "SUS4")
+                .replace("SUS", "SUS4") // По умолчанию sus = sus4
+                .replace("ADD9", "ADD9")
+                .replace("ADD", "ADD9")
+                // Мажорный септаккорд
+                .replace("MAJ7", "M7")
+                .replace("MAJOR7", "M7")
+                // Специальный случай
+                .replace("B5", "MAJ7S5")
+                // ===== Нормализация альтерированных квинт =====
+                // #5 / +5 — повышенная квинта
+                .replace("#5", "AUG5")
+                .replace("+5", "AUG5")
+                // b5 / -5 — пониженная квинта (b уже заменена на B в ChordData.getNormalizedName)
+                .replace("B5", "DIM5")
+                .replace("-5", "DIM5")
+                // Комбинированные с септаккордом
+                .replace("7AUG5", "7#5")
+                .replace("7DIM5", "7B5")
+        }
 
         // Вычислить базовую ноту
         val baseNoteIndex = NOTE_NAMES.indexOf(noteLetter)
@@ -86,9 +141,8 @@ object ChordGenerator {
         }
 
         val rootNote = (baseNoteIndex + accidental + 12) % 12
-        val cleanSuffix = if (suffix == "M") "M" else suffix
 
-        return Pair(rootNote, cleanSuffix)
+        return Pair(rootNote, suffix)
     }
 
     /**
@@ -401,27 +455,32 @@ object ChordGenerator {
     private fun findBarres(frets: List<Int>, minFret: Int): List<Barre> {
         val barres = mutableListOf<Barre>()
 
-        // Ищем струны с одинаковым ладом = minFret (потенциальный барре)
-        // Барре возможно только если струны соседние (без пропусков)
-        val barreStrings = frets.withIndex()
-            .filter { it.value == minFret && minFret > 0 }
-            .sortedBy { it.index }
-            .map { it.index }
+        // ===== ИСПРАВЛЕНИЕ: ищем барре на ВСЕХ ладах, а не только на minFret =====
+        // Барре может быть на любом ладу, где есть 2+ соседних струны
+        // Группируем струны по ладу
+        val fretToStrings = mutableMapOf<Int, MutableList<Int>>()
 
-        if (barreStrings.size >= 2) {
-            // Проверяем, что струны соседние (нет пропусков)
-            val isContiguous = barreStrings.zipWithNext().all { (a, b) -> b - a == 1 }
+        for ((stringIndex, fret) in frets.withIndex()) {
+            if (fret > 0) {
+                fretToStrings.getOrPut(fret) { mutableListOf() }.add(stringIndex)
+            }
+        }
 
-            if (isContiguous) {
-                val fromString = barreStrings.min() + 1
-                val toString = barreStrings.max() + 1
+        // Ищем барре на каждом ладу, где есть 2+ струны
+        for ((fret, stringIndices) in fretToStrings) {
+            if (stringIndices.size >= 2) {
+                val sorted = stringIndices.sorted()
+                // Проверяем, что струны соседние (нет пропусков)
+                val isContiguous = sorted.zipWithNext().all { (a, b) -> b - a == 1 }
 
-                barres.add(Barre(
-                    fret = minFret,
-                    fromString = fromString,
-                    toString = toString,
-                    finger = 1 // Указательный палец
-                ))
+                if (isContiguous) {
+                    barres.add(Barre(
+                        fret = fret,
+                        fromString = sorted.min() + 1,
+                        toString = sorted.max() + 1,
+                        finger = 1 // Указательный палец
+                    ))
+                }
             }
         }
 
