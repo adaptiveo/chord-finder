@@ -260,10 +260,24 @@ fun ChordDiagramCanvas(
             drawContext.canvas.nativeCanvas.drawText(label, x, size.height - 5.dp.toPx(), labelPaint)
         }
 
-        // Draw finger positions (excluding frets covered by barres)
-        // Only skip finger if it's exactly on the same position as a barre
+        // Draw muted strings (X) - MUST be before the skip condition
         position.frets.forEach { fret ->
-            if (fret.fret <= 0) return@forEach  // Skip open strings and muted strings
+            if (fret.fret == -1) {
+                val stringIndex = fret.string - 1
+                val x = leftPadding + stringIndex * stringSpacing
+                val redPaint = android.graphics.Paint().apply {
+                    color = android.graphics.Color.RED
+                    textSize = 18.dp.toPx()
+                    textAlign = android.graphics.Paint.Align.CENTER
+                    isFakeBoldText = true
+                }
+                drawContext.canvas.nativeCanvas.drawText("X", x, topPadding - 10.dp.toPx(), redPaint)
+            }
+        }
+
+        // Draw finger positions (excluding frets covered by barres)
+        position.frets.forEach { fret ->
+            if (fret.fret <= 0) return@forEach  // Skip open strings and already handled muted strings
 
             // Check if this specific finger position is covered by a barre
             val isCoveredByBarre = position.barres.any { barre ->
@@ -280,15 +294,6 @@ fun ChordDiagramCanvas(
             val fingerNum = fret.finger ?: position.fingers.find { it.string == fret.string && it.fret == fret.fret }?.fingerNumber ?: 0
 
             when {
-                fret.fret == -1 -> {
-                    val redPaint = android.graphics.Paint().apply {
-                        color = android.graphics.Color.RED
-                        textSize = 18.dp.toPx()
-                        textAlign = android.graphics.Paint.Align.CENTER
-                        isFakeBoldText = true
-                    }
-                    drawContext.canvas.nativeCanvas.drawText("X", x, topPadding - 10.dp.toPx(), redPaint)
-                }
                 fret.fret == 0 -> {
                     drawCircle(
                         color = stringColor,

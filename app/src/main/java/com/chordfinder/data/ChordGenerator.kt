@@ -144,7 +144,8 @@ object ChordGenerator {
         }
 
         // Попробовать найти позицию с аккордом в открытой позиции или ближе к началу
-        val bestPosition = findBestPosition(stringOptions, chordNotes, stringsCount, maxStretch, tuning)
+        // Передаем rootNote для предпочтения корневой позиции (избегаем инверсий)
+        val bestPosition = findBestPosition(stringOptions, chordNotes, stringsCount, maxStretch, tuning, rootNote)
             ?: findAnyValidPosition(stringOptions, chordNotes, stringsCount, maxStretch, tuning)
 
         return bestPosition?.let { (frets, barres, fingers) ->
@@ -173,12 +174,13 @@ object ChordGenerator {
         chordNotes: List<Int>,
         stringsCount: Int,
         maxStretch: Int,
-        tuning: List<Int>
+        tuning: List<Int>,
+        rootNote: Int? = null
     ): Triple<List<Int>, List<Barre>, List<Int?>>? {
 
         // Сначала пробуем найти открытую позицию (с открытыми струнами)
         // Это важно для аккордов типа D, G, C, где некоторые струны не играют
-        val openPositionResult = tryOpenPosition(stringOptions, chordNotes, stringsCount, maxStretch, tuning)
+        val openPositionResult = tryOpenPosition(stringOptions, chordNotes, stringsCount, maxStretch, tuning, rootNote)
         if (openPositionResult != null) return openPositionResult
 
         // Пробуем открытую позицию сначала (лад 0-5)
@@ -192,19 +194,25 @@ object ChordGenerator {
     /**
      * Попробовать найти открытую позицию (с открытыми струнами и пропусками)
      * Для аккордов типа D, где струны 6 и 5 не играют
+     *
+     * Важно: предпочитать позиции, где самая низкая играющая струна является корнем аккорда.
+     * Это предотвращает инверсии типа D/A (аккорд D с басом A).
      */
     private fun tryOpenPosition(
         stringOptions: List<List<Pair<Int, Int>>>,
         chordNotes: List<Int>,
         stringsCount: Int,
         maxStretch: Int,
-        tuning: List<Int>
+        tuning: List<Int>,
+        rootNote: Int? = null // Корень аккорда для предпочтения корневой позиции
     ): Triple<List<Int>, List<Barre>, List<Int?>>? {
         val frets = MutableList(stringsCount) { -1 } // -1 = не играется
         val fingers = MutableList<Int?>(stringsCount) { null }
 
-        // Для каждой струны: если есть открытая нота (лад 0) в аккорде - используем её
-        // Иначе ищем лад в пределах 0-4
+        // Сначала находим все возможные открытые позиции
+        // Затем выбираем ту, где самая низкая струна - корень (если возможно)
+        val openStringOptions = mutableListOf<Pair<Int, Int>>() // (stringIndex, fret)
+
         for (stringIndex in 0 until stringsCount) {
             val openNote = tuning[stringIndex]
 
@@ -212,13 +220,39 @@ object ChordGenerator {
             val hasOpenString = openNote in chordNotes
 
             if (hasOpenString) {
+                openStringOptions.add(stringIndex to 0)
+            }
+        }
+
+        // Если есть корень, предпочитаем позиции где самая низкая играющая струна - корень.
+        // Струны с меньшим индексом = более низкие/толстые (E, A, D, G, B, e).
+        // Для аккорда D (xx0232): струны 0 (E) и 1 (A) должны быть приглушены, т.к. они ниже корня D.
+        var lowestRootString = -1
+        if (rootNote != null) {
+            lowestRootString = openStringOptions.find { tuning[it.first] == rootNote }?.first ?: -1
+        }
+
+        // Для каждой струны решаем, использовать ли открытую или искать лад
+        for (stringIndex in 0 until stringsCount) {
+            val openNote = tuning[stringIndex]
+
+            // Проверяем, входит ли открытая струна в аккорд
+            val hasOpenString = openNote in chordNotes
+
+            // Если эта струна НИЖЕ (меньший индекс) самой низкой струны с корнем - отключаем её
+            // Это предотвращает инверсии типа D/A (аккорд D с басом A)
+            if (rootNote != null && lowestRootString >= 0 && stringIndex < lowestRootString) {
+                // Эта струна ниже корня - НЕ используем её (оставляем -1)
+                // Даже если открытая нота входит в аккорд
+                frets[stringIndex] = -1
+            } else if (hasOpenString) {
                 // Используем открытую струну
                 frets[stringIndex] = 0
             } else {
-                // Ищем лад в пределах 0-4
+                // Ищем лад в пределах 1-5 (расширено с 1..4 для лучших позиций)
                 val options = stringOptions[stringIndex].filter { (_, fret) ->
                     val note = (openNote + fret) % 12
-                    note in chordNotes && fret in 1..4
+                    note in chordNotes && fret in 1..5
                 }
                 val bestOption = options.firstOrNull()
                 if (bestOption != null) {
