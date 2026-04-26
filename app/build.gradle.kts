@@ -37,6 +37,12 @@ android {
         jvmTarget = "17"
     }
 
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     signingConfigs {
         create("release") {
             storeFile = rootProject.file("chord-finder.jks")
@@ -65,4 +71,10 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     debugImplementation("androidx.compose.ui:ui-tooling")
+
+    // Test dependencies
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+    testImplementation("org.mockito:mockito-core:5.8.0")
+    testImplementation("androidx.test:core-ktx:1.5.0")
 }

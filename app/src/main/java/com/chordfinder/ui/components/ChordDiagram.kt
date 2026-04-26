@@ -61,8 +61,7 @@ fun UkuleleChordDiagram(chord: Chord) {
             modifier = Modifier.padding(bottom = 12.dp)
         )
 
-        // ⚠️ ВНИМАНИЕ: Данные для укулеле некорректные (см. ERR-010)
-        // pianochord.org содержит только пианино, данные сгенерированы с ошибками
+        // Данные для укулеле генерируются динамически (см. ERR-010)
 
         if (position != null) {
             ChordDiagramCanvas(
@@ -261,8 +260,19 @@ fun ChordDiagramCanvas(
             drawContext.canvas.nativeCanvas.drawText(label, x, size.height - 5.dp.toPx(), labelPaint)
         }
 
-        // Draw finger positions
+        // Draw finger positions (excluding frets covered by barres)
+        // Only skip finger if it's exactly on the same position as a barre
         position.frets.forEach { fret ->
+            if (fret.fret <= 0) return@forEach  // Skip open strings and muted strings
+
+            // Check if this specific finger position is covered by a barre
+            val isCoveredByBarre = position.barres.any { barre ->
+                barre.fret == fret.fret &&
+                fret.string >= barre.fromString &&
+                fret.string <= barre.toString
+            }
+            if (isCoveredByBarre) return@forEach
+
             val stringIndex = fret.string - 1  // 0-indexed, left to right (1 = thickest string on left)
             val x = leftPadding + stringIndex * stringSpacing
             val y = topPadding + (fret.fret - 0.5f) * fretSpacing

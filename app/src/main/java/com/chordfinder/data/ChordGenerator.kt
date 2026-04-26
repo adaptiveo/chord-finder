@@ -132,11 +132,12 @@ object ChordGenerator {
         val stringsCount = tuning.size
 
         // Для каждой струны найти подходящие позиции
+        // Открытые струны (лад 0) добавляем только если нота входит в аккорд
         val stringOptions = (0 until stringsCount).map { stringIndex ->
             val openNote = tuning[stringIndex]
             (0..maxFret).mapNotNull { fret ->
                 val note = (openNote + fret) % 12
-                if (note in chordNotes || fret == 0) {
+                if (note in chordNotes) {
                     Pair(stringIndex, fret)
                 } else null
             }
@@ -175,12 +176,83 @@ object ChordGenerator {
         tuning: List<Int>
     ): Triple<List<Int>, List<Barre>, List<Int?>>? {
 
+        // Сначала пробуем найти открытую позицию (с открытыми струнами)
+        // Это важно для аккордов типа D, G, C, где некоторые струны не играют
+        val openPositionResult = tryOpenPosition(stringOptions, chordNotes, stringsCount, maxStretch, tuning)
+        if (openPositionResult != null) return openPositionResult
+
         // Пробуем открытую позицию сначала (лад 0-5)
         for (baseFret in 0..5) {
             val result = tryPositionAtFret(stringOptions, chordNotes, stringsCount, baseFret, maxStretch, tuning)
             if (result != null) return result
         }
         return null
+    }
+
+    /**
+     * Попробовать найти открытую позицию (с открытыми струнами и пропусками)
+     * Для аккордов типа D, где струны 6 и 5 не играют
+     */
+    private fun tryOpenPosition(
+        stringOptions: List<List<Pair<Int, Int>>>,
+        chordNotes: List<Int>,
+        stringsCount: Int,
+        maxStretch: Int,
+        tuning: List<Int>
+    ): Triple<List<Int>, List<Barre>, List<Int?>>? {
+        val frets = MutableList(stringsCount) { -1 } // -1 = не играется
+        val fingers = MutableList<Int?>(stringsCount) { null }
+
+        // Для каждой струны: если есть открытая нота (лад 0) в аккорде - используем её
+        // Иначе ищем лад в пределах 0-4
+        for (stringIndex in 0 until stringsCount) {
+            val openNote = tuning[stringIndex]
+
+            // Проверяем, входит ли открытая струна в аккорд
+            val hasOpenString = openNote in chordNotes
+
+            if (hasOpenString) {
+                // Используем открытую струну
+                frets[stringIndex] = 0
+            } else {
+                // Ищем лад в пределах 0-4
+                val options = stringOptions[stringIndex].filter { (_, fret) ->
+                    val note = (openNote + fret) % 12
+                    note in chordNotes && fret in 1..4
+                }
+                val bestOption = options.firstOrNull()
+                if (bestOption != null) {
+                    frets[stringIndex] = bestOption.second
+                }
+                // Если нет опций - оставляем -1 (не играет)
+            }
+        }
+
+        // Проверяем что все ноты аккорда присутствуют
+        val playedNoteSet = mutableSetOf<Int>()
+        for ((stringIndex, fret) in frets.withIndex()) {
+            if (fret >= 0) {
+                val openNote = tuning[stringIndex]
+                val note = (openNote + fret) % 12
+                playedNoteSet.add(note)
+            }
+        }
+
+        if (!chordNotes.all { it in playedNoteSet }) return null
+
+        // Проверяем минимум 3 струны для гитары
+        val playedStrings = frets.count { it >= 0 }
+        if (playedStrings < 3) return null
+
+        // Расставляем пальцы
+        val minFret = frets.filter { it > 0 }.minOrNull() ?: 0
+        val maxFret = frets.maxOrNull() ?: 0
+        assignFingers(frets, fingers, minFret, maxFret)
+
+        // Определяем барре если нужно
+        val barres = findBarres(frets, minFret)
+
+        return Triple(frets, barres, fingers)
     }
 
     private fun findAnyValidPosition(
@@ -281,18 +353,27 @@ object ChordGenerator {
         val barres = mutableListOf<Barre>()
 
         // Ищем струны с одинаковым ладом = minFret (потенциальный барре)
-        val barreStrings = frets.withIndex().filter { it.value == minFret && minFret > 0 }
+        // Барре возможно только если струны соседние (без пропусков)
+        val barreStrings = frets.withIndex()
+            .filter { it.value == minFret && minFret > 0 }
+            .sortedBy { it.index }
+            .map { it.index }
 
         if (barreStrings.size >= 2) {
-            val fromString = barreStrings.minOf { it.index } + 1
-            val toString = barreStrings.maxOf { it.index } + 1
+            // Проверяем, что струны соседние (нет пропусков)
+            val isContiguous = barreStrings.zipWithNext().all { (a, b) -> b - a == 1 }
 
-            barres.add(Barre(
-                fret = minFret,
-                fromString = fromString,
-                toString = toString,
-                finger = 1 // Указательный палец
-            ))
+            if (isContiguous) {
+                val fromString = barreStrings.min() + 1
+                val toString = barreStrings.max() + 1
+
+                barres.add(Barre(
+                    fret = minFret,
+                    fromString = fromString,
+                    toString = toString,
+                    finger = 1 // Указательный палец
+                ))
+            }
         }
 
         return barres
